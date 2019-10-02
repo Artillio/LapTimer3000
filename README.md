@@ -13,3 +13,4 @@ COSE DA AGGIUNGERE
  - Possibilità di fermare/mettere in pausa la gara
  - Aggiungere un LOG completo delle gare in modo che se si impalla il programma non perdiamo la gara in corso
  - Animazione di fine gara
+ - Aggiungere libreria per collegare tramite porta seriale arduino
