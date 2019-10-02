@@ -5,4 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LapTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920"/>
+        Title="MainWindow" Height="1080" Width="1920" Background="White">
+    <Grid>
+        <Ellipse x:Name="ellipse_Light_1" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="432,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Ellipse x:Name="ellipse_Light_2" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="665,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Ellipse x:Name="ellipse_Light_3" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="893,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Ellipse x:Name="ellipse_Light_4" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="1119,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Ellipse x:Name="ellipse_Light_5" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="1321,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="70" Margin="597,523,0,0" VerticalAlignment="Top" Width="693" Background="#FFDC00FF"/>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="597,593,0,0" VerticalAlignment="Top" Width="349" Background="#FF00FF3A">
+            <Label Content="MIGLIOR TEMPO"/>
+        </Border>
+        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="946,593,0,0" VerticalAlignment="Top" Width="344" Background="#FF0023FF">
+            <Label Content="ULTIMO GIRO"/>
+        </Border>
+        <Label x:Name="lbl_Time_Race" Content="TEMPO CHE SCORRE&#xD;&#xA;" HorizontalAlignment="Left" Margin="784,523,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="36"/>
+        <Label Content="00:12:15" HorizontalAlignment="Center" Margin="642,617,990,0" VerticalAlignment="Top" Width="280" Height="76" FontSize="48"/>
+        <Label Content="00:21:18" HorizontalAlignment="Center" Margin="970,617,662,0" VerticalAlignment="Top" Width="280" Height="76" FontSize="48"/>
+        <DataGrid x:Name="dataGrid_Ranking" HorizontalAlignment="Left" Height="1049" VerticalAlignment="Top" Width="357" Grid.Column="2" Grid.ColumnSpan="2" Uid="dataGrid_Ranking"/>
+        <ListView HorizontalAlignment="Left" Height="1049" Margin="1515,0,0,0" VerticalAlignment="Top" Width="397">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn/>
+                </GridView>
+            </ListView.View>
+            <ListViewItem Content="JOHNNY - PAGATO" Margin="0"/>
+            <ListViewItem Content="FEDERICO - BARBONE E NON HA PAGATO" Margin="0"/>
+            <ListViewItem Content="PUPAZZO - PAGATO 2 GIRI" Margin="0"/>
+            <ListViewItem Content="MARCO - NON PERVENUTO" Margin="0"/>
+        </ListView>
+        <Button x:Name="btn_StartRace" Content="START" HorizontalAlignment="Left" Margin="597,85,0,0" VerticalAlignment="Top" Width="719" Height="103" FontSize="48" Click="Btn_StartRace_Click"/>
+    </Grid>
+</Window>
