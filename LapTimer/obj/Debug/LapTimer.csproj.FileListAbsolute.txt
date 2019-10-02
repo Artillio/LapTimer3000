@@ -32,3 +32,4 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\System.Data.SQLi
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\System.Memory.xml
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csprojAssemblyReference.cache

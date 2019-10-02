@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Activities.Statements;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
@@ -25,7 +26,11 @@ namespace LapTimer
     public class Player
     {
         public String Name { get; set; }
+        public String Surname { get; set; }
         public String Time { get; set; }
+        public int Age { get; set; }
+        public int Paid { get; set; }
+        public int Number_Race { get; set; }
     }
 
     /// <summary>
@@ -36,17 +41,87 @@ namespace LapTimer
 
         int i = 0;
         int time = 0;
+        private const string dataSource = "Data Source=H:\\Telegram Download\\LapTimer3001.db;";
+        internal SQLiteConnection connection;
 
         public MainWindow()
         {
+            CreateConnection();
             InitializeComponent();
-            Fill_DataGrid();
+            Fill_DataGrid_Ranking();
+            Fill_DataGrid_Queue();
 
         }
 
-        private void Fill_DataGrid()
+        private void Fill_DataGrid_Ranking()
         {
             dataGrid_Ranking.ItemsSource = Retrieve_Player_Ranking();
+        }
+        private void Fill_DataGrid_Queue()
+        {
+
+            dataGrid_Player_Queue.ItemsSource = Retrieve_Player_Queue();
+        }
+
+        private void CreateConnection()
+        {
+            try
+            {
+                connection = new SQLiteConnection(dataSource);
+                connection.Open();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "Application";
+                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Function to Close a Connection
+        /// </summary>
+        public void CloseConnection()
+        {
+            connection.Close();
+        }
+
+        private ObservableCollection<Player> Retrieve_Player_Queue()
+        {
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                    connection.Open();
+
+                ObservableCollection<Player> player = new ObservableCollection<Player>();
+
+                SQLiteCommand command = new SQLiteCommand("select P.Name, P.Surname, Q.Number_Race, Q.Paid from Player P, Queue Q where P.ID = Q.ID_User order by Q.Datetime", connection);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Number_Race = Convert.ToInt32(reader["Number_Race"]), Paid = Convert.ToInt32(reader["Paid"]) });
+
+
+                reader.Close();
+                return player;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "Application";
+                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
+                }
+                return null;
+            }
+            finally
+            {
+                CloseConnection();
+            }
         }
 
         private void Btn_StartRace_Click(object sender, RoutedEventArgs e)
@@ -112,22 +187,105 @@ namespace LapTimer
 
         public ObservableCollection<Player> Retrieve_Player_Ranking()
         {
-            ObservableCollection<Player> player = new ObservableCollection<Player>();
-            string path = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
-            using (SQLiteConnection conn = new SQLiteConnection(@"Data Source=H:\Telegram Download\LapTimer3001.db;"))
+            try
             {
-                conn.Open();
+                if (connection.State == System.Data.ConnectionState.Closed)
+                    connection.Open();
+                ObservableCollection<Player> player = new ObservableCollection<Player>();
 
-                SQLiteCommand command = new SQLiteCommand("select Name, Surname, Time_Score from Player, Ranking where ID = ID_User order by Time_Score", conn);
+
+                SQLiteCommand command = new SQLiteCommand("select Name, Surname, Time_Score from Player, Ranking where ID = ID_User order by Time_Score", connection);
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
-                    player.Add(new Player { Name = reader["Name"].ToString(), Time = reader["Time"].ToString() });
+                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time"].ToString() });
 
 
                 reader.Close();
                 return player;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "Application";
+                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
+                }
+                return null;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        //VALUTARE SE RITORNARE L'ID DEL PLAYER PER USALRO EVENTUALMENTE DOPO
+        private Boolean Check_Existing_Player(String Name, String Surname)
+        {
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                    connection.Open();
+
+                SQLiteCommand command = new SQLiteCommand("select ID from Player where Name = @Name AND Surname = @Surname", connection);
+                command.Parameters.AddWithValue("@Name", Name);
+                command.Parameters.AddWithValue("@Surname", Surname);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                if (reader != null)
+                {
+                    if (reader.Read())
+                        return true;
+                    else
+                        return false;
+                }
+                else
+                    return false;
+            }
+
+            catch (Exception e)
+            {
+
+                Console.Write(e);
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "Application";
+                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
+                }
+                return false;
+            }
+            finally
+            {
+                CloseConnection();
+            }
+        }
+
+        private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (Check_Existing_Player(txt_Name.Text, txt_Surname.Text) == false)
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                    connection.Open();
+
+                SQLiteCommand command = new SQLiteCommand("insert into Player(Name, Surname, Contact, Age) values (@Name, @Surname, @Contact, @Age)", connection);
+                command.Parameters.AddWithValue("@Name", txt_Name.Text);
+                command.Parameters.AddWithValue("@Surname", txt_Surname.Text);
+                command.Parameters.AddWithValue("@Contact", txt_Contact.Text);
+                command.Parameters.AddWithValue("@Age", txt_Age.Text);
+                command.ExecuteNonQuery();
+
+            }
+            if (connection.State == System.Data.ConnectionState.Closed)
+                connection.Open();
+            //AGGIUNGERE LA PARTE PER INSERIRE LE INFORMAZIONI SULLA QUEUE
+
+        }
+
+        private void Btn_Delete_Player_Queue_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

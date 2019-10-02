@@ -19,21 +19,20 @@
         <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="946,593,0,0" VerticalAlignment="Top" Width="344" Background="#FF0023FF">
             <Label Content="ULTIMO GIRO"/>
         </Border>
-        <Label x:Name="lbl_Time_Race" Content="TEMPO CHE SCORRE&#xD;&#xA;" HorizontalAlignment="Left" Margin="784,523,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="36"/>
+        <Label x:Name="lbl_Time_Race" Content="00:00:00&#xA;" HorizontalAlignment="Left" Margin="893,523,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="36"/>
         <Label Content="00:12:15" HorizontalAlignment="Center" Margin="642,617,990,0" VerticalAlignment="Top" Width="280" Height="76" FontSize="48"/>
         <Label Content="00:21:18" HorizontalAlignment="Center" Margin="970,617,662,0" VerticalAlignment="Top" Width="280" Height="76" FontSize="48"/>
-        <DataGrid x:Name="dataGrid_Ranking" HorizontalAlignment="Left" Height="1049" VerticalAlignment="Top" Width="357" Grid.Column="2" Grid.ColumnSpan="2" Uid="dataGrid_Ranking"/>
-        <ListView HorizontalAlignment="Left" Height="1049" Margin="1515,0,0,0" VerticalAlignment="Top" Width="397">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-            <ListViewItem Content="JOHNNY - PAGATO" Margin="0"/>
-            <ListViewItem Content="FEDERICO - BARBONE E NON HA PAGATO" Margin="0"/>
-            <ListViewItem Content="PUPAZZO - PAGATO 2 GIRI" Margin="0"/>
-            <ListViewItem Content="MARCO - NON PERVENUTO" Margin="0"/>
-        </ListView>
+        <DataGrid x:Name="dataGrid_Ranking" HorizontalAlignment="Left" Height="1029" VerticalAlignment="Top" Width="347" Uid="dataGrid_Ranking" Margin="10,10,0,0"/>
         <Button x:Name="btn_StartRace" Content="START" HorizontalAlignment="Left" Margin="597,85,0,0" VerticalAlignment="Top" Width="719" Height="103" FontSize="48" Click="Btn_StartRace_Click"/>
+        <Button x:Name="btn_AddPlayer" Content="Aggiungi Giocatore" HorizontalAlignment="Left" Margin="1515,818,0,0" VerticalAlignment="Top" Width="127" Click="Btn_AddPlayer_Click"/>
+        <Button x:Name="btn_Delete_Player_Queue" Content="Elimina Giocatore" HorizontalAlignment="Left" Margin="1750,818,0,0" VerticalAlignment="Top" Width="136" Click="Btn_Delete_Player_Queue_Click"/>
+        <TextBox x:Name="txt_Name" HorizontalAlignment="Left" Height="23" Margin="1515,857,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_Surname" HorizontalAlignment="Left" Height="23" Margin="1640,857,0,0" TextWrapping="Wrap" Text="Cognome" VerticalAlignment="Top" Width="120"/>
+        <RadioButton Content="Pagato" HorizontalAlignment="Left" Margin="1766,891,0,0" VerticalAlignment="Top" />
+        <RadioButton Content="Non Pagato" HorizontalAlignment="Left" Margin="1766,911,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="23" Margin="1766,857,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txt_Age" HorizontalAlignment="Left" Height="23" Margin="1515,892,0,0" TextWrapping="Wrap" Text="Età" VerticalAlignment="Top" Width="120"/>
+        <DataGrid x:Name="dataGrid_Player_Queue" HorizontalAlignment="Left" Height="785" Margin="1515,10,0,0" VerticalAlignment="Top" Width="371" RenderTransformOrigin="-0.02,0.66"/>
+        <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="23" Margin="1641,892,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>
