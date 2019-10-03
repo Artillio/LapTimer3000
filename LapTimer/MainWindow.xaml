@@ -49,51 +49,51 @@
                 <ImageBrush ImageSource="Images/pause_image.png" Opacity="0.9" Stretch="UniformToFill"/>
             </Button.Background>
         </Button>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="376,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="376,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_1" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,39,0,0">
+            <Ellipse x:Name="ellipse_Light_1" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="606,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="606,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_2" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,39,0,0">
+            <Ellipse x:Name="ellipse_Light_2" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="836,280,0,0" VerticalAlignment="Top" Width="230">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="836,280,0,0" VerticalAlignment="Top" Width="230" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_3" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,39,0,0">
+            <Ellipse x:Name="ellipse_Light_3" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="1066,280,0,0" VerticalAlignment="Top" Width="230">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="1066,280,0,0" VerticalAlignment="Top" Width="230" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_4" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,39,0,0">
+            <Ellipse x:Name="ellipse_Light_4" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="1" HorizontalAlignment="Left" Height="245" Margin="1297,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="1297,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_5" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,39,0,0">
+            <Ellipse x:Name="ellipse_Light_5" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
