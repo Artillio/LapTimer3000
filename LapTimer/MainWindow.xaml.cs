@@ -138,19 +138,19 @@ namespace LapTimer
             switch (i)
             {
                 case 0:
-                    ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 1:
-                    ellipse_Light_2.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ellipse_Light_2.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 2:
-                    ellipse_Light_3.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ellipse_Light_3.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 3:
-                    ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 4:
-                    ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 5:
                     ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
