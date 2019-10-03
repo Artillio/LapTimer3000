@@ -41,7 +41,7 @@ namespace LapTimer
 
         int i = 0;
         int time = 0;
-        private const string dataSource = "Data Source=H:\\Telegram Download\\LapTimer3001.db;";
+        private const string dataSource = "Data Source=C:\\Users\\artil\\Documents\\GitHub\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
         internal SQLiteConnection connection;
 
         public MainWindow()
@@ -221,7 +221,7 @@ namespace LapTimer
         }
 
         //VALUTARE SE RITORNARE L'ID DEL PLAYER PER USALRO EVENTUALMENTE DOPO
-        private Boolean Check_Existing_Player(String Name, String Surname)
+        private int Check_Existing_Player(String Name, String Surname)
         {
             try
             {
@@ -236,12 +236,12 @@ namespace LapTimer
                 if (reader != null)
                 {
                     if (reader.Read())
-                        return true;
+                        return Convert.ToInt32(reader["ID"]);
                     else
-                        return false;
+                        return 0;
                 }
                 else
-                    return false;
+                    return 0;
             }
 
             catch (Exception e)
@@ -253,7 +253,7 @@ namespace LapTimer
                     eventLog.Source = "Application";
                     eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
                 }
-                return false;
+                return 0;
             }
             finally
             {
@@ -263,29 +263,82 @@ namespace LapTimer
 
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
+            int ID_User = Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
 
-            if (Check_Existing_Player(txt_Name.Text, txt_Surname.Text) == false)
+            if (ID_User == 0)
             {
                 if (connection.State == System.Data.ConnectionState.Closed)
                     connection.Open();
 
-                SQLiteCommand command = new SQLiteCommand("insert into Player(Name, Surname, Contact, Age) values (@Name, @Surname, @Contact, @Age)", connection);
-                command.Parameters.AddWithValue("@Name", txt_Name.Text);
-                command.Parameters.AddWithValue("@Surname", txt_Surname.Text);
-                command.Parameters.AddWithValue("@Contact", txt_Contact.Text);
-                command.Parameters.AddWithValue("@Age", txt_Age.Text);
-                command.ExecuteNonQuery();
+                using (SQLiteCommand command = new SQLiteCommand("insert into Player(Name, Surname, Contact, Age) values (@Name, @Surname, @Contact, @Age)", connection))
+                {
+                    command.Parameters.AddWithValue("@Name", txt_Name.Text);
+                    command.Parameters.AddWithValue("@Surname", txt_Surname.Text);
+                    command.Parameters.AddWithValue("@Contact", txt_Contact.Text);
+                    command.Parameters.AddWithValue("@Age", txt_Age.Text);
+                    command.ExecuteNonQuery();
+
+                    CloseConnection();
+
+                    ID_User = Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
+                }
+
 
             }
+
             if (connection.State == System.Data.ConnectionState.Closed)
                 connection.Open();
-            //AGGIUNGERE LA PARTE PER INSERIRE LE INFORMAZIONI SULLA QUEUE
+            using (SQLiteCommand command = new SQLiteCommand("insert into Queue(ID_User, Number_Race, Paid) values (@ID_User, @Number_Race, @Paid)", connection))
+            {
+                command.Parameters.AddWithValue("@ID_User", ID_User);
+                command.Parameters.AddWithValue("@Number_Race", txt_Number_Race.Text);
+                if(radioButton_Paid.IsChecked == true)
+                    command.Parameters.AddWithValue("@Paid", 1);
+                else
+                    command.Parameters.AddWithValue("@Paid", 0);
+                command.ExecuteNonQuery();
+            }
+
+            CloseConnection();
+
+            Fill_DataGrid_Queue();
+
 
         }
 
         private void Btn_Delete_Player_Queue_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                //PRENDERE ID UTENTE DALLA TABELLA DELLE QUEUE PER CANCELLARE
+                int ID_User = 0;
 
+                if (connection.State == System.Data.ConnectionState.Closed)
+                    connection.Open();
+
+                using (SQLiteCommand command = new SQLiteCommand("delete from Queue where ID_User = @ID_User", connection))
+                {
+                    command.Parameters.AddWithValue("@ID_User", ID_User);
+                    command.ExecuteNonQuery();
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+
+                Console.Write(ex);
+                using (EventLog eventLog = new EventLog("Application"))
+                {
+                    eventLog.Source = "Application";
+                    eventLog.WriteEntry(ex.Message, EventLogEntryType.Error);
+                }
+            }
+            finally
+            {
+                CloseConnection();
+                Fill_DataGrid_Queue();
+            }
         }
     }
 }
