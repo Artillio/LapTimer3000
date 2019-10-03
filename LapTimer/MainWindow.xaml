@@ -7,32 +7,48 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920" Background="White">
     <Grid>
-        <Ellipse x:Name="ellipse_Light_1" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="432,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-        <Ellipse x:Name="ellipse_Light_2" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="665,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-        <Ellipse x:Name="ellipse_Light_3" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="893,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-        <Ellipse x:Name="ellipse_Light_4" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="1119,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-        <Ellipse x:Name="ellipse_Light_5" Fill="#FFDADADA" HorizontalAlignment="Left" Height="150" Margin="1321,296,0,0" Stroke="Black" VerticalAlignment="Top" Width="150"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="70" Margin="597,523,0,0" VerticalAlignment="Top" Width="693" Background="#FFDC00FF"/>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="597,593,0,0" VerticalAlignment="Top" Width="349" Background="#FF00FF3A">
-            <Label Content="MIGLIOR TEMPO"/>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="#FFE4002B"/>
+                <GradientStop Color="#FF5B1321" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="526*"/>
+            <RowDefinition/>
+            <RowDefinition Height="523*"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="416,334,416,29">
+            <Ellipse x:Name="ellipse_Light_1" Fill="#FFDADADA" HorizontalAlignment="Left" Height="159" Stroke="Black" VerticalAlignment="Top" Width="154"/>
+            <Ellipse x:Name="ellipse_Light_2" Fill="#FFDADADA" HorizontalAlignment="Left" Height="159" Margin="239,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="154"/>
+            <Ellipse x:Name="ellipse_Light_3" Fill="#FFDADADA" HorizontalAlignment="Left" Height="159" Margin="473,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="154"/>
+            <Ellipse x:Name="ellipse_Light_4" Fill="#FFDADADA" HorizontalAlignment="Left" Height="159" Margin="706,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="154"/>
+            <Ellipse x:Name="ellipse_Light_5" Fill="#FFDADADA" HorizontalAlignment="Left" Height="159" Margin="913,0,0,0" Stroke="Black" VerticalAlignment="Top" Width="154"/>
+        </Grid>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="124" Margin="590,80,0,0" VerticalAlignment="Top" Width="719" Grid.Row="2"/>
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="502,292,0,0" VerticalAlignment="Top" Width="350" Grid.Row="2">
+            <Label Content="MIGLIOR TEMPO" Margin="84,-1,70,58" Foreground="White" FontSize="24"/>
         </Border>
-        <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Left" Height="100" Margin="946,593,0,0" VerticalAlignment="Top" Width="344" Background="#FF0023FF">
-            <Label Content="ULTIMO GIRO"/>
+        <Border BorderThickness="1" Height="100" Margin="1045,292,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="350" Grid.Row="2">
+            <Label Content="ULTIMO GIRO" HorizontalAlignment="Left" Width="155" Margin="92,-1,0,63" Foreground="White" FontSize="24"/>
         </Border>
-        <Label x:Name="lbl_Time_Race" Content="00:00:00&#xA;" HorizontalAlignment="Left" Margin="893,523,0,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="36"/>
-        <Label Content="00:12:15" HorizontalAlignment="Center" Margin="642,617,990,0" VerticalAlignment="Top" Width="280" Height="76" FontSize="48"/>
-        <Label Content="00:21:18" HorizontalAlignment="Center" Margin="970,617,662,0" VerticalAlignment="Top" Width="280" Height="76" FontSize="48"/>
-        <DataGrid x:Name="dataGrid_Ranking" HorizontalAlignment="Left" Height="1029" VerticalAlignment="Top" Width="347" Uid="dataGrid_Ranking" Margin="10,10,0,0"/>
-        <Button x:Name="btn_StartRace" Content="START" HorizontalAlignment="Left" Margin="597,85,0,0" VerticalAlignment="Top" Width="719" Height="103" FontSize="48" Click="Btn_StartRace_Click"/>
-        <Button x:Name="btn_AddPlayer" Content="Aggiungi Giocatore" HorizontalAlignment="Left" Margin="1515,818,0,0" VerticalAlignment="Top" Width="127" Click="Btn_AddPlayer_Click"/>
-        <Button x:Name="btn_Delete_Player_Queue" Content="Elimina Giocatore" HorizontalAlignment="Left" Margin="1750,818,0,0" VerticalAlignment="Top" Width="136" Click="Btn_Delete_Player_Queue_Click"/>
-        <TextBox x:Name="txt_Name" HorizontalAlignment="Left" Height="23" Margin="1515,857,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txt_Surname" HorizontalAlignment="Left" Height="23" Margin="1640,857,0,0" TextWrapping="Wrap" Text="Cognome" VerticalAlignment="Top" Width="120"/>
-        <RadioButton Content="Pagato" HorizontalAlignment="Left" Margin="1766,891,0,0" VerticalAlignment="Top" />
-        <RadioButton Content="Non Pagato" HorizontalAlignment="Left" Margin="1766,911,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="23" Margin="1766,857,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="txt_Age" HorizontalAlignment="Left" Height="23" Margin="1515,892,0,0" TextWrapping="Wrap" Text="Età" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="dataGrid_Player_Queue" HorizontalAlignment="Left" Height="785" Margin="1515,10,0,0" VerticalAlignment="Top" Width="371" RenderTransformOrigin="-0.02,0.66"/>
-        <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="23" Margin="1641,892,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120"/>
+        <Label x:Name="lbl_Time_Race" Content="00:00:00&#xA;" HorizontalAlignment="Center" Margin="832,80,793,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="75" Height="98" Width="287" Grid.Row="2" Foreground="#FFFDFDFD"/>
+        <Label Content="00:12:15" HorizontalAlignment="Center" Margin="590,316,1133,0" VerticalAlignment="Top" Width="189" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
+        <Label Content="00:21:18" HorizontalAlignment="Center" Margin="1121,316,603,0" VerticalAlignment="Top" Width="188" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
+        <DataGrid x:Name="dataGrid_Ranking" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3"/>
+        <Button x:Name="btn_StartRace" HorizontalAlignment="Left" Margin="671,72,0,0" VerticalAlignment="Top" Width="248" Height="128" FontSize="48" Click="Btn_StartRace_Click" Foreground="White" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/star_image.jpg" Opacity="0.8" Stretch="UniformToFill"/>
+            </Button.Background>
+        </Button>
+        <Button x:Name="btn_AddPlayer" Content="Aggiungi Giocatore" HorizontalAlignment="Left" Margin="1537,391.5,0,0" VerticalAlignment="Top" Width="127" Click="Btn_AddPlayer_Click" Grid.Row="2"/>
+        <Button x:Name="btn_Delete_Player_Queue" Content="Elimina Giocatore" HorizontalAlignment="Left" Margin="1772,391.5,0,0" VerticalAlignment="Top" Width="136" Click="Btn_Delete_Player_Queue_Click" Grid.Row="2"/>
+        <TextBox x:Name="txt_Name" HorizontalAlignment="Left" Height="22" Margin="1537,431.5,0,0" TextWrapping="Wrap" Text="Nome" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+        <TextBox x:Name="txt_Surname" HorizontalAlignment="Left" Height="22" Margin="1662,431.5,0,0" TextWrapping="Wrap" Text="Cognome" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+        <RadioButton Content="Pagato" HorizontalAlignment="Left" Margin="1820,468,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="60" Foreground="White" />
+        <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="22" Margin="1788,431.5,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+        <TextBox x:Name="txt_Age" HorizontalAlignment="Left" Height="24" Margin="1537,465.5,0,0" TextWrapping="Wrap" Text="Età" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
+        <DataGrid x:Name="dataGrid_Player_Queue" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3"/>
+        <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="24" Margin="1663,465.5,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
     </Grid>
 </Window>
