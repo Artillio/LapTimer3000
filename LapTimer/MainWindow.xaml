@@ -49,7 +49,7 @@
                 <ImageBrush ImageSource="Images/pause_image.png" Opacity="0.9" Stretch="UniformToFill"/>
             </Button.Background>
         </Button>
-        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="376,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="377,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
@@ -59,7 +59,7 @@
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="606,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="607,281,0,0" VerticalAlignment="Top" Width="230" Grid.RowSpan="2" BorderBrush="Black">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
@@ -69,7 +69,7 @@
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="836,280,0,0" VerticalAlignment="Top" Width="230" BorderBrush="Black">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="837,281,0,0" VerticalAlignment="Top" Width="230" BorderBrush="Black" Grid.RowSpan="2">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
@@ -79,7 +79,7 @@
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
-        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="1066,280,0,0" VerticalAlignment="Top" Width="230" BorderBrush="Black">
+        <Border BorderThickness="2" HorizontalAlignment="Left" Height="245" Margin="1067,281,0,0" VerticalAlignment="Top" Width="230" BorderBrush="Black" Grid.RowSpan="2">
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
@@ -99,5 +99,8 @@
                 </Ellipse.Fill>
             </Ellipse>
         </Border>
+        <GroupBox x:Name="groupBox_Arduino" Header="Connect to Arduino" HorizontalAlignment="Left" Height="88" Margin="10,375,0,0" Grid.Row="2" VerticalAlignment="Top" Width="387" Foreground="White" FontSize="16"/>
+        <ComboBox x:Name="comboBox_COM" HorizontalAlignment="Left" Height="36" Margin="30,407,0,0" Grid.Row="2" VerticalAlignment="Top" Width="196" FontSize="16"/>
+        <Button x:Name="ConnectBtn" Content="Connect" HorizontalAlignment="Left" Height="43" Margin="248,403,0,0" Grid.Row="2" VerticalAlignment="Top" Width="124" FontSize="18" Click="ConnectBtn_Click"/>
     </Grid>
 </Window>

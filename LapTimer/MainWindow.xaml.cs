@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.IO.Ports;
 
 namespace LapTimer
 {
@@ -38,11 +39,12 @@ namespace LapTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-
         int i = 0;
         int time = 0;
+        bool found = false; // true=macchinina presente, false altrimenti
         private const string dataSource = "Data Source=C:\\Users\\artil\\Documents\\GitHub\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
         internal SQLiteConnection connection;
+        SerialPort serialPort;
 
         public MainWindow()
         {
@@ -51,6 +53,10 @@ namespace LapTimer
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
+            //btn_StartRace.IsEnabled = false;  // da inserire in release
+            // cerco le porte seriali utilizzate e le elenco nel ComboBox
+            String[] ports = SerialPort.GetPortNames();
+            comboBox_COM.ItemsSource = ports;
         }
 
         private void Fill_DataGrid_Ranking()
@@ -339,6 +345,28 @@ namespace LapTimer
                 CloseConnection();
                 Fill_DataGrid_Queue();
             }
+        }
+
+        private void ConnectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBox_COM.Text.StartsWith("COM"))
+            {
+                groupBox_Arduino.IsEnabled = false;
+                btn_StartRace.IsEnabled = true;
+                serialPort = new SerialPort("COM1", 9600);
+                serialPort.PortName = comboBox_COM.Text;
+                serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
+                serialPort.DtrEnable = true;
+                serialPort.Open();
+            }
+        }
+
+        private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            SerialPort sp = (SerialPort)sender;
+            char indata = (char)sp.ReadChar();
+            if (indata == '0')
+                found = true;
         }
     }
 }
