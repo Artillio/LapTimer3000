@@ -1,3 +1,8 @@
 
 *.lock
 .vs/*
+.vs/LapTimer/v16/Server/sqlite3/storage.ide-wal
+.vs/LapTimer/v16/Server/sqlite3/storage.ide-shm
+.vs/LapTimer/v16/Server/sqlite3/storage.ide-wal
+.vs/LapTimer/v16/Server/sqlite3/storage.ide
+.vs/LapTimer/v16/.suo
