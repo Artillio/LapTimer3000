@@ -68,3 +68,38 @@ C:\Users\fedep\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.
 C:\Users\fedep\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CopyComplete
 C:\Users\fedep\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.exe
 C:\Users\fedep\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\LapTimer.exe.config
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\LapTimer.exe
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\LapTimer.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\MaterialDesignColors.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\MaterialDesignThemes.Wpf.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\Microsoft.Data.Sqlite.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\SQLitePCLRaw.core.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Buffers.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Data.SQLite.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Memory.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\MaterialDesignColors.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\MaterialDesignThemes.Wpf.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\MaterialDesignThemes.Wpf.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\Microsoft.Data.Sqlite.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Buffers.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Data.SQLite.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Data.SQLite.dll.config
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Memory.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.csprojAssemblyReference.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\MainWindow.g.cs
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\App.g.cs
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer_MarkupCompile.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer_MarkupCompile.lref
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\MainWindow.baml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.g.resources
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.Properties.Resources.resources
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.GenerateResource.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CoreCompileInputs.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CopyComplete
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.exe
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.pdb
