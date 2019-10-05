@@ -23,7 +23,6 @@ using System.IO.Ports;
 
 namespace LapTimer
 {
-
     public class Player
     {
         public String Name { get; set; }
@@ -39,15 +38,15 @@ namespace LapTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-        int i = 0;
-        int time = 0;
-        long lap_time = 0;
-        bool found = false; // true=macchinina presente, false altrimenti
+        int sem = 0;                        // selettore dei semafori da accendere
+        long race_time = 0;
+        long lap_time = 0, best_lap = 0;
+        bool found = false;                 // true=macchinina presente, false altrimenti
         private const string dataSource = "Data Source=C:\\Users\\artil\\Documents\\GitHub\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
         internal SQLiteConnection connection;
         SerialPort serialPort;
-        Stopwatch stopWatch_lap;    // real-time timer per il giro corrente
-        DispatcherTimer timer_giro; // timer per la visualizzazione il giro corrente
+        Stopwatch stopWatch_lap, stopWatch_race;    // real-time timer
+        DispatcherTimer timer_giro, timercorsa; // timer per la visualizzazione il giro corrente
 
         public MainWindow()
         {
@@ -68,7 +67,6 @@ namespace LapTimer
         }
         private void Fill_DataGrid_Queue()
         {
-
             dataGrid_Player_Queue.ItemsSource = Retrieve_Player_Queue();
         }
 
@@ -139,13 +137,14 @@ namespace LapTimer
             timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += Timer_Tick;
             btn_StartRace.IsEnabled = false;
+            sem = 0;
             timer.Start();
         }
 
         public void Timer_Tick(object sender, EventArgs e)
         {
             DispatcherTimer timer = (DispatcherTimer)sender;
-            switch (i)
+            switch (sem)
             {
                 case 0:
                     ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
@@ -168,27 +167,23 @@ namespace LapTimer
                     ellipse_Light_3.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    DispatcherTimer timercorsa = new DispatcherTimer();
-                    timercorsa.Interval = TimeSpan.FromMilliseconds(1);
-                    timercorsa.Tick += Timer_Tick_Race;
+                    SetRaceTimer();
                     SetLapTimer();
-                    timercorsa.Start();
+                    stopWatch_race.Start();
                     break;
                 default:
                     timer.Stop();
                     break;
             }
-            i++;
+            sem++;
         }
 
         public void Timer_Tick_Race(object sender, EventArgs e)
         {
-            DispatcherTimer timer = (DispatcherTimer)sender;
-            if (time <= 60000)
+            race_time = 60000 - stopWatch_race.ElapsedMilliseconds;
+                
+            if (race_time > 0)
             {
-                time++;
-                lbl_Time_Race.Content = string.Format("00:{00}:{01}", time / 60, time % 60);
-
                 if (found == true && lap_time == 0)
                 {
                     stopWatch_lap.Start();
@@ -197,11 +192,18 @@ namespace LapTimer
             }
             else
             {
-                timer.Stop();
+                race_time = 0;
                 stopWatch_lap.Stop();
+                stopWatch_race.Stop();
+                timercorsa.Stop();
                 timer_giro.Stop();
                 btn_StartRace.IsEnabled = true;
             }
+
+            long cent = (race_time / 10) % 100;
+            long sec = (race_time / 1000) % 60;
+            long min = (race_time / 1000) / 60;
+            lbl_Time_Race.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
         }
 
         public ObservableCollection<Player> Retrieve_Player_Ranking()
@@ -385,12 +387,14 @@ namespace LapTimer
 
         private void SetLapTimer()
         {
-            // imposto i timer per la corsa
+            // imposto i timer per il giro
             stopWatch_lap = new Stopwatch();        // real-time timer
             timer_giro = new DispatcherTimer();     // timer per la visualizzazione
-            timer_giro.Interval = TimeSpan.FromMilliseconds(10);
+            timer_giro.Interval = TimeSpan.FromMilliseconds(1);
             timer_giro.Tick += Timer_Tick_Lap;
-            lap_time = 0;
+            lap_time = best_lap = 0;
+            lap_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
+            best_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
             found = false;
             timer_giro.Start();
         }
@@ -403,10 +407,13 @@ namespace LapTimer
             long min = (lap_time / 1000) / 60;
             lap_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
 
-            // quando arriva il prossimo segnale dal sensore parte il giro successivo
             if ((found || min > 5) && lap_time > 0)
             {
-                // devo ancora salvare i tempi dei giri
+                if (best_lap == 0 || lap_time < best_lap)
+                {
+                    best_lap = lap_time;
+                    best_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+                }
                 lap_time = 0;
                 stopWatch_lap.Restart();
                 found = false;
@@ -416,6 +423,21 @@ namespace LapTimer
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             found = true;
+        }
+
+        private void SetRaceTimer()
+        {
+            // imposto i timer per la corsa
+            stopWatch_race = new Stopwatch();       // real-time timer
+            timercorsa = new DispatcherTimer();     // timer per la visualizzazione
+            timercorsa.Interval = TimeSpan.FromMilliseconds(1);
+            timercorsa.Tick += Timer_Tick_Race;
+            race_time = 60000;
+            long cent = (race_time / 10) % 100;
+            long sec = (race_time / 1000) % 60;
+            long min = (race_time / 1000) / 60;
+            lbl_Time_Race.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+            timercorsa.Start();
         }
     }
 }
