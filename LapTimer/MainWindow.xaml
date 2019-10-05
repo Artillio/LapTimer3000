@@ -28,7 +28,7 @@
         </Border>
         <Label x:Name="lbl_Time_Race" Content="00:00:00&#xA;" HorizontalAlignment="Center" Margin="816,80,810,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="75" Height="98" Width="286" Grid.Row="2" Foreground="#FFFDFDFD"/>
         <Label Content="00:00:00" HorizontalAlignment="Center" Margin="590,316,1133,0" VerticalAlignment="Top" Width="189" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
-        <Label Content="00:00:00" HorizontalAlignment="Center" Margin="1121,316,603,0" VerticalAlignment="Top" Width="188" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
+        <Label x:Name="lap_label" Content="00:00:00" HorizontalAlignment="Center" Margin="1121,316,603,0" VerticalAlignment="Top" Width="188" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
         <DataGrid x:Name="dataGrid_Ranking" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3" Background="{x:Null}" Foreground="White"/>
         <Button x:Name="btn_StartRace" HorizontalAlignment="Left" Margin="832,112,0,0" VerticalAlignment="Top" Width="248" Height="128" Click="Btn_StartRace_Click" Foreground="White" BorderBrush="{x:Null}">
             <Button.Background>
@@ -53,7 +53,7 @@
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_1" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
+            <Ellipse x:Name="ellipse_Light_1" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="26,39,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
@@ -63,7 +63,7 @@
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_2" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
+            <Ellipse x:Name="ellipse_Light_2" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="26,39,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
@@ -73,7 +73,7 @@
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_3" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
+            <Ellipse x:Name="ellipse_Light_3" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="26,39,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
@@ -83,7 +83,7 @@
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_4" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
+            <Ellipse x:Name="ellipse_Light_4" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="26,39,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
@@ -93,7 +93,7 @@
             <Border.Background>
                 <ImageBrush ImageSource="Images/traffic_light.png"/>
             </Border.Background>
-            <Ellipse x:Name="ellipse_Light_5" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="27,40,0,0">
+            <Ellipse x:Name="ellipse_Light_5" HorizontalAlignment="Left" Height="173" Stroke="Black" VerticalAlignment="Top" Width="174" Margin="26,39,0,0">
                 <Ellipse.Fill>
                     <SolidColorBrush Color="#FFDADADA" Opacity="0"/>
                 </Ellipse.Fill>
@@ -102,5 +102,6 @@
         <GroupBox x:Name="groupBox_Arduino" Header="Connect to Arduino" HorizontalAlignment="Left" Height="88" Margin="10,375,0,0" Grid.Row="2" VerticalAlignment="Top" Width="387" Foreground="White" FontSize="16"/>
         <ComboBox x:Name="comboBox_COM" HorizontalAlignment="Left" Height="36" Margin="30,407,0,0" Grid.Row="2" VerticalAlignment="Top" Width="196" FontSize="16"/>
         <Button x:Name="ConnectBtn" Content="Connect" HorizontalAlignment="Left" Height="43" Margin="248,403,0,0" Grid.Row="2" VerticalAlignment="Top" Width="124" FontSize="18" Click="ConnectBtn_Click"/>
+        <Button Content="Simula sensore" HorizontalAlignment="Left" Height="26" Margin="1153,404,0,0" Grid.Row="2" VerticalAlignment="Top" Width="128" Click="Button_Click"/>
     </Grid>
 </Window>

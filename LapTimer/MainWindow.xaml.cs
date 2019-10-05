@@ -41,10 +41,13 @@ namespace LapTimer
     {
         int i = 0;
         int time = 0;
+        long lap_time = 0;
         bool found = false; // true=macchinina presente, false altrimenti
         private const string dataSource = "Data Source=C:\\Users\\artil\\Documents\\GitHub\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
         internal SQLiteConnection connection;
         SerialPort serialPort;
+        Stopwatch stopWatch_lap;    // real-time timer per il giro corrente
+        DispatcherTimer timer_giro; // timer per la visualizzazione il giro corrente
 
         public MainWindow()
         {
@@ -135,6 +138,7 @@ namespace LapTimer
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += Timer_Tick;
+            btn_StartRace.IsEnabled = false;
             timer.Start();
         }
 
@@ -167,6 +171,7 @@ namespace LapTimer
                     DispatcherTimer timercorsa = new DispatcherTimer();
                     timercorsa.Interval = TimeSpan.FromMilliseconds(1);
                     timercorsa.Tick += Timer_Tick_Race;
+                    SetLapTimer();
                     timercorsa.Start();
                     break;
                 default:
@@ -183,12 +188,20 @@ namespace LapTimer
             {
                 time++;
                 lbl_Time_Race.Content = string.Format("00:{00}:{01}", time / 60, time % 60);
+
+                if (found == true && lap_time == 0)
+                {
+                    stopWatch_lap.Start();
+                    found = false;
+                }
             }
             else
             {
                 timer.Stop();
+                stopWatch_lap.Stop();
+                timer_giro.Stop();
+                btn_StartRace.IsEnabled = true;
             }
-
         }
 
         public ObservableCollection<Player> Retrieve_Player_Ranking()
@@ -351,7 +364,8 @@ namespace LapTimer
         {
             if (comboBox_COM.Text.StartsWith("COM"))
             {
-                groupBox_Arduino.IsEnabled = false;
+                comboBox_COM.IsEnabled = false;
+                ConnectBtn.IsEnabled = false;
                 btn_StartRace.IsEnabled = true;
                 serialPort = new SerialPort("COM1", 9600);
                 serialPort.PortName = comboBox_COM.Text;
@@ -367,6 +381,41 @@ namespace LapTimer
             char indata = (char)sp.ReadChar();
             if (indata == '0')
                 found = true;
+        }
+
+        private void SetLapTimer()
+        {
+            // imposto i timer per la corsa
+            stopWatch_lap = new Stopwatch();        // real-time timer
+            timer_giro = new DispatcherTimer();     // timer per la visualizzazione
+            timer_giro.Interval = TimeSpan.FromMilliseconds(10);
+            timer_giro.Tick += Timer_Tick_Lap;
+            lap_time = 0;
+            found = false;
+            timer_giro.Start();
+        }
+
+        public void Timer_Tick_Lap(object sender, EventArgs e)
+        {
+            lap_time = stopWatch_lap.ElapsedMilliseconds;
+            long cent = (lap_time / 10) % 100;
+            long sec = (lap_time / 1000) % 60;
+            long min = (lap_time / 1000) / 60;
+            lap_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+
+            // quando arriva il prossimo segnale dal sensore parte il giro successivo
+            if ((found || min > 5) && lap_time > 0)
+            {
+                // devo ancora salvare i tempi dei giri
+                lap_time = 0;
+                stopWatch_lap.Restart();
+                found = false;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            found = true;
         }
     }
 }
