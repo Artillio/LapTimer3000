@@ -136,7 +136,7 @@ namespace LapTimer
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += Timer_Tick;
-            btn_StartRace.IsEnabled = false;
+            btn_StartRace.IsHitTestVisible = false;
             sem = 0;
             timer.Start();
         }
@@ -170,9 +170,15 @@ namespace LapTimer
                     SetRaceTimer();
                     SetLapTimer();
                     stopWatch_race.Start();
+                    btn_PauseRace.IsHitTestVisible = true;
                     break;
                 default:
                     timer.Stop();
+                    ellipse_Light_1.Fill = new SolidColorBrush();
+                    ellipse_Light_2.Fill = new SolidColorBrush();
+                    ellipse_Light_3.Fill = new SolidColorBrush();
+                    ellipse_Light_4.Fill = new SolidColorBrush();
+                    ellipse_Light_5.Fill = new SolidColorBrush();
                     break;
             }
             sem++;
@@ -197,7 +203,7 @@ namespace LapTimer
                 stopWatch_race.Stop();
                 timercorsa.Stop();
                 timer_giro.Stop();
-                btn_StartRace.IsEnabled = true;
+                btn_StartRace.IsHitTestVisible = true;
             }
 
             long cent = (race_time / 10) % 100;
@@ -399,6 +405,29 @@ namespace LapTimer
             timer_giro.Start();
         }
 
+        private void Btn_PauseRace_Click(object sender, RoutedEventArgs e)
+        {
+            if (stopWatch_race.IsRunning == true)
+            {
+                stopWatch_lap.Stop();
+                stopWatch_race.Stop();
+                timer_giro.Stop();
+                timercorsa.Stop();
+            }
+            else
+            {
+                stopWatch_lap.Start();
+                stopWatch_race.Start();
+                timer_giro.Start();
+                timercorsa.Start();
+            }
+        }
+
+        private void Btn_Simula_sensore_Click(object sender, RoutedEventArgs e)
+        {
+            found = true;
+        }
+
         public void Timer_Tick_Lap(object sender, EventArgs e)
         {
             lap_time = stopWatch_lap.ElapsedMilliseconds;
@@ -418,11 +447,6 @@ namespace LapTimer
                 stopWatch_lap.Restart();
                 found = false;
             }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            found = true;
         }
 
         private void SetRaceTimer()
