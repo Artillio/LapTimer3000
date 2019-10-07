@@ -21,6 +21,8 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.IO.Ports;
 using System.Data;
+using System.Media;
+using System.IO;
 
 namespace LapTimer
 {
@@ -136,6 +138,7 @@ namespace LapTimer
 
         private void Btn_StartRace_Click(object sender, RoutedEventArgs e)
         {
+
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromMilliseconds(1000);
             timer.Tick += Timer_Tick;
