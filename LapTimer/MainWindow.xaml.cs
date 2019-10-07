@@ -20,11 +20,13 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.IO.Ports;
+using System.Data;
 
 namespace LapTimer
 {
     public class Player
     {
+        public int ID { get; set; }
         public String Name { get; set; }
         public String Surname { get; set; }
         public String Time { get; set; }
@@ -47,6 +49,7 @@ namespace LapTimer
         SerialPort serialPort;
         Stopwatch stopWatch_lap, stopWatch_race;    // real-time timer
         DispatcherTimer timer_giro, timercorsa; // timer per la visualizzazione il giro corrente
+        Player current_Player = new Player();
 
         public MainWindow()
         {
@@ -93,7 +96,7 @@ namespace LapTimer
         /// </summary>
         public void CloseConnection()
         {
-            connection.Close();
+            //connection.Close();
         }
 
         private ObservableCollection<Player> Retrieve_Player_Queue()
@@ -105,11 +108,11 @@ namespace LapTimer
 
                 ObservableCollection<Player> player = new ObservableCollection<Player>();
 
-                SQLiteCommand command = new SQLiteCommand("select P.Name, P.Surname, Q.Number_Race, Q.Paid from Player P, Queue Q where P.ID = Q.ID_User order by Q.Datetime", connection);
+                SQLiteCommand command = new SQLiteCommand("select P.ID, P.Name, P.Surname, Q.Number_Race, Q.Paid from Player P, Queue Q where P.ID = Q.ID_User order by Q.Datetime", connection);
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
-                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Number_Race = Convert.ToInt32(reader["Number_Race"]), Paid = Convert.ToInt32(reader["Paid"]) });
+                    player.Add(new Player { ID = Convert.ToInt32(reader["ID"]), Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Number_Race = Convert.ToInt32(reader["Number_Race"]), Paid = Convert.ToInt32(reader["Paid"]) });
 
 
                 reader.Close();
@@ -247,7 +250,6 @@ namespace LapTimer
             }
         }
 
-        //VALUTARE SE RITORNARE L'ID DEL PLAYER PER USALRO EVENTUALMENTE DOPO
         private int Check_Existing_Player(String Name, String Surname)
         {
             try
@@ -337,17 +339,28 @@ namespace LapTimer
         {
             try
             {
-                //PRENDERE ID UTENTE DALLA TABELLA DELLE QUEUE PER CANCELLARE
-                int ID_User = 0;
-
-                if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();
-
-                using (SQLiteCommand command = new SQLiteCommand("delete from Queue where ID_User = @ID_User", connection))
+                if (sender != null)
                 {
-                    command.Parameters.AddWithValue("@ID_User", ID_User);
-                    command.ExecuteNonQuery();
+                    DataGrid grid = sender as DataGrid;
+                    if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                    {
+                        DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                        current_Player = (Player)dgr.Item;
+
+
+                        if (connection.State == System.Data.ConnectionState.Closed)
+                            connection.Open();
+
+                        using (SQLiteCommand command = new SQLiteCommand("delete from Queue where ID_User = @ID_User", connection))
+                        {
+                            command.Parameters.AddWithValue("@ID_User", current_Player.ID);
+                            command.ExecuteNonQuery();
+                        }
+
+                        MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
+
 
             }
 
@@ -400,6 +413,7 @@ namespace LapTimer
             timer_giro.Tick += Timer_Tick_Lap;
             lap_time = best_lap = 0;
             lap_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
+            last_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
             best_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
             found = false;
             timer_giro.Start();
@@ -463,5 +477,23 @@ namespace LapTimer
             lbl_Time_Race.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
             timercorsa.Start();
         }
+
+
+        private void player_Queue_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if(sender != null)
+            {
+                DataGrid grid = sender as DataGrid;
+                if(grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                {
+                    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                    current_Player = (Player)dgr.Item;
+
+                    if(current_Player.Paid == 0)
+                        MessageBox.Show("Questo giocatore non ha pagato", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+        }
+
     }
 }
