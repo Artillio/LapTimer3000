@@ -104,3 +104,4 @@ C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTim
 C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.exe
 C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.pdb
 C:\Users\fedep\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer_Content.g.cs
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer_Content.g.cs

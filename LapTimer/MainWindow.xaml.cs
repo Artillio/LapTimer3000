@@ -51,7 +51,7 @@ namespace LapTimer
         SerialPort serialPort;
         Stopwatch stopWatch_lap, stopWatch_race;    // real-time timer
         DispatcherTimer timer_giro, timercorsa; // timer per la visualizzazione il giro corrente
-        Player current_Player = new Player();
+        Player current_Player;
 
         public MainWindow()
         {
@@ -138,13 +138,19 @@ namespace LapTimer
 
         private void Btn_StartRace_Click(object sender, RoutedEventArgs e)
         {
-
-            DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = TimeSpan.FromMilliseconds(1000);
-            timer.Tick += Timer_Tick;
-            btn_StartRace.IsHitTestVisible = false;
-            sem = 0;
-            timer.Start();
+            if(current_Player != null)
+            {
+                DispatcherTimer timer = new DispatcherTimer();
+                timer.Interval = TimeSpan.FromMilliseconds(1000);
+                timer.Tick += Timer_Tick;
+                btn_StartRace.IsHitTestVisible = false;
+                sem = 0;
+                timer.Start();
+            }
+            else
+            {
+                MessageBox.Show("Prima di inizare una gara bisogna selezionare un giocatore", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
         }
 
         public void Timer_Tick(object sender, EventArgs e)
@@ -193,7 +199,7 @@ namespace LapTimer
         public void Timer_Tick_Race(object sender, EventArgs e)
         {
             race_time = 60000 - stopWatch_race.ElapsedMilliseconds;
-                
+
             if (race_time > 0)
             {
                 if (found == true && lap_time == 0)
@@ -324,7 +330,7 @@ namespace LapTimer
             {
                 command.Parameters.AddWithValue("@ID_User", ID_User);
                 command.Parameters.AddWithValue("@Number_Race", txt_Number_Race.Text);
-                if(radioButton_Paid.IsChecked == true)
+                if (radioButton_Paid.IsChecked == true)
                     command.Parameters.AddWithValue("@Paid", 1);
                 else
                     command.Parameters.AddWithValue("@Paid", 0);
@@ -342,26 +348,23 @@ namespace LapTimer
         {
             try
             {
-                if (sender != null)
+                if (dataGrid_Player_Queue.SelectedItems != null && dataGrid_Player_Queue.SelectedItems.Count == 1)
                 {
-                    DataGrid grid = sender as DataGrid;
-                    if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                    DataGridRow dgr = dataGrid_Player_Queue.ItemContainerGenerator.ContainerFromItem(dataGrid_Player_Queue.SelectedItem) as DataGridRow;
+                    current_Player = new Player();
+                    current_Player = (Player)dgr.Item;
+
+
+                    if (connection.State == System.Data.ConnectionState.Closed)
+                        connection.Open();
+
+                    using (SQLiteCommand command = new SQLiteCommand("delete from Queue where ID_User = @ID_User", connection))
                     {
-                        DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                        current_Player = (Player)dgr.Item;
-
-
-                        if (connection.State == System.Data.ConnectionState.Closed)
-                            connection.Open();
-
-                        using (SQLiteCommand command = new SQLiteCommand("delete from Queue where ID_User = @ID_User", connection))
-                        {
-                            command.Parameters.AddWithValue("@ID_User", current_Player.ID);
-                            command.ExecuteNonQuery();
-                        }
-
-                        MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                        command.Parameters.AddWithValue("@ID_User", current_Player.ID);
+                        command.ExecuteNonQuery();
                     }
+
+                    MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
 
@@ -484,16 +487,18 @@ namespace LapTimer
 
         private void player_Queue_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if(sender != null)
+            if (sender != null)
             {
                 DataGrid grid = sender as DataGrid;
-                if(grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
+                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
                 {
                     DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
+                    current_Player = new Player();
                     current_Player = (Player)dgr.Item;
 
-                    if(current_Player.Paid == 0)
+                    if (current_Player.Paid == 0)
                         MessageBox.Show("Questo giocatore non ha pagato", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+
                 }
             }
         }
