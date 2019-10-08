@@ -46,7 +46,7 @@ namespace LapTimer
         long race_time = 0;
         long lap_time = 0, best_lap = 0;
         bool found = false;                 // true=macchinina presente, false altrimenti
-        private const string dataSource = "Data Source=C:\\Users\\artil\\Documents\\GitHub\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
+        private const string dataSource = "Data Source=.\\LapTimer3001.db;Version=3;";
         //private const string dataSource = "Data Source=C:\\Users\\Lorenzo\\Desktop\\Macchinine sagra\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
         internal SQLiteConnection connection;
         SerialPort serialPort;
@@ -152,7 +152,7 @@ namespace LapTimer
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
-                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time"].ToString() });
+                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time_Score"].ToString() });
 
 
                 reader.Close();
@@ -320,6 +320,34 @@ namespace LapTimer
             }
         }
 
+        private void Save_Best_Time_Lap(int ID_User, string Time_Score)
+        {
+            if (connection.State == System.Data.ConnectionState.Closed)
+                connection.Open();
+
+            using (SQLiteCommand command = new SQLiteCommand("insert into Ranking(ID_User, Time_Score) values (@ID_User, @Time_Score)", connection))
+            {
+                command.Parameters.AddWithValue("@ID_User", ID_User);
+                command.Parameters.AddWithValue("@Time_Score", Time_Score);
+                command.ExecuteNonQuery();
+
+            }
+        }
+
+        private void Save_Time_Lap(int ID_User, string Time_Score)
+        {
+            if (connection.State == System.Data.ConnectionState.Closed)
+                connection.Open();
+
+            using (SQLiteCommand command = new SQLiteCommand("insert into Time_Story(ID_Player, Time) values (@ID_Player, @Time)", connection))
+            {
+                command.Parameters.AddWithValue("@ID_Player", ID_User);
+                command.Parameters.AddWithValue("@Time", Time_Score);
+                command.ExecuteNonQuery();
+
+            }
+        }
+
         /*---------------------------- FUNZIONI PER ARDUINO --------------------------------------------*/
 
         private void ConnectBtn_Click(object sender, RoutedEventArgs e)
@@ -349,7 +377,7 @@ namespace LapTimer
 
         private void Btn_StartRace_Click(object sender, RoutedEventArgs e)
         {
-            if(current_Player != null)
+            if (current_Player != null)
             {
                 DispatcherTimer sem_timer = new DispatcherTimer();
                 sem_timer.Interval = TimeSpan.FromMilliseconds(1000);
@@ -480,8 +508,10 @@ namespace LapTimer
                 {
                     best_lap = lap_time;
                     best_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+                    Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
                 }
                 last_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+                Save_Time_Lap(current_Player.ID, last_label.Content.ToString());
                 lap_time = 0;
                 stopWatch_lap.Restart();
                 found = false;

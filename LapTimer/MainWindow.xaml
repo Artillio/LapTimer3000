@@ -29,7 +29,7 @@
         <Label x:Name="lbl_Time_Race" Content="00:00:00&#xA;" HorizontalAlignment="Center" Margin="816,80,810,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="75" Height="98" Width="286" Grid.Row="2" Foreground="#FFFDFDFD"/>
         <Label x:Name="best_label" Content="00:00:00" HorizontalAlignment="Center" Margin="590,316,1133,0" VerticalAlignment="Top" Width="189" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
         <Label x:Name="last_label" Content="00:00:00" HorizontalAlignment="Center" Margin="1128,316,596,0" VerticalAlignment="Top" Width="188" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
-        <DataGrid x:Name="dataGrid_Ranking" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3" Background="{x:Null}" Foreground="White"/>
+        <DataGrid x:Name="dataGrid_Ranking" IsReadOnly="True" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black"/>
         <Button x:Name="btn_StartRace" HorizontalAlignment="Left" Margin="832,112,0,0" VerticalAlignment="Top" Width="248" Height="128" Click="Btn_StartRace_Click" Foreground="White" BorderBrush="{x:Null}">
             <Button.Background>
                 <ImageBrush ImageSource="Images/star_image.jpg" Opacity="0.9" Stretch="UniformToFill"/>
@@ -42,7 +42,7 @@
         <RadioButton x:Name="radioButton_Paid" Content="Pagato" HorizontalAlignment="Left" Margin="1820,468,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="60" Foreground="White" />
         <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="22" Margin="1788,431.5,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
         <TextBox x:Name="txt_Age" HorizontalAlignment="Left" Height="24" Margin="1537,465.5,0,0" TextWrapping="Wrap" Text="Età" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
-        <DataGrid x:Name="dataGrid_Player_Queue" MouseDoubleClick="player_Queue_MouseDoubleClick" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="White">
+        <DataGrid x:Name="dataGrid_Player_Queue" IsReadOnly="True" MouseDoubleClick="player_Queue_MouseDoubleClick" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black">
         </DataGrid>
         <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="24" Margin="1663,465.5,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
         <Button x:Name="btn_PauseRace" HorizontalAlignment="Left" Margin="1419,10,0,0" VerticalAlignment="Top" Width="133" Height="80" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False" Click="Btn_PauseRace_Click">
