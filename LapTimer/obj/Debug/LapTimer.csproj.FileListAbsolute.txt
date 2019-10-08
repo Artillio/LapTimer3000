@@ -110,3 +110,6 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\System.Numerics.
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.application
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CopyComplete
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\Sounds\beep1.wav
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\Sounds\beep2.wav
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\Sounds\race_countdown.wav

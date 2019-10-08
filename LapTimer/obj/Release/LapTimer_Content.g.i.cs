@@ -8,7 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/beep1.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/beep2.wav")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/race_countdown.wav")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("laptimer3001.db")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("sounds/race_countdown.mp3")]
 
 

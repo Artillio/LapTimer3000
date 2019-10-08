@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="146912">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="147424">
       <assemblyIdentity name="LapTimer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lJFhCI4c1UPm13A2lhDKoHI47h00vAJ0Ya3AaxTR6Js=</dsig:DigestValue>
+        <dsig:DigestValue>UofiIIQi5Zz16WbRrilGuKHtnyZK5UIYbGt5S58fUgA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -179,13 +179,31 @@
       <dsig:DigestValue>XkTBMZ5w/FI9sJtMDt274Kjl453qgV/5WXH4Nnu+G2M=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sounds\race_countdown.mp3" size="222976">
+  <file name="Sounds\beep1.wav" size="229364">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>557n6GvuZGSOP42HWEULSIEcQv0/S5RJkQfTrHVan3I=</dsig:DigestValue>
+      <dsig:DigestValue>UqGoTahgqKBAaQGsv3xys2ENJ9Dpi4O/C47rnuLrloI=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Sounds\beep2.wav" size="299924">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>yneOB6nEL0tF4oB6sy2mDlKRQoaWsatkn3qMggBTJDc=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Sounds\race_countdown.wav" size="1322082">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>ncWTOyLazAxrJbmF7YJfxTHbJIq3719xj6faq5su4RI=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

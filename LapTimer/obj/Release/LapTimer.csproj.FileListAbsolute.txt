@@ -38,3 +38,6 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.cspro
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.exe
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.pdb
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Release\LapTimer3001.db
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Release\Sounds\race_countdown.wav
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Release\Sounds\beep1.wav
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Release\Sounds\beep2.wav
