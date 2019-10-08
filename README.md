@@ -8,3 +8,5 @@ COSE DA SISTEMARE
 COSE DA AGGIUNGERE
  - Gestione del Rank in modo che se uno occupa le prime 10 posizioni compaia solo una volta col miglior tempo (parte sinistra del programma)
  - Animazione di fine gara
+ - pulsante reset
+ - resettare le label prima di iniziare le gare
