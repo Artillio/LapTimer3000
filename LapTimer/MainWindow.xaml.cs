@@ -26,16 +26,6 @@ using System.IO;
 
 namespace LapTimer
 {
-    public class Player
-    {
-        public int ID { get; set; }
-        public String Name { get; set; }
-        public String Surname { get; set; }
-        public String Time { get; set; }
-        public int Age { get; set; }
-        public int Paid { get; set; }
-        public int Number_Race { get; set; }
-    }
 
     /// <summary>
     /// Logica di interazione per MainWindow.xaml
@@ -45,20 +35,16 @@ namespace LapTimer
         int sem;                                // selettore dei semafori da accendere
         long race_time, lap_time, best_time;    // tempi in millisecondi
         bool found;                             // true=macchinina presente, false altrimenti
-        private const string dataSource = "Data Source=.\\LapTimer3001.db;Version=3;";
-        internal SQLiteConnection connection;
         DispatcherTimer timer_sem, timer_race, timer_lap;   // timer per la visualizzazione
         Stopwatch stopWatch_race, stopWatch_lap;            // real-time timers
         Player current_Player;
         SoundPlayer beep1, beep2;
+        DatabaseManager databaseManager = new DatabaseManager();
 
         public MainWindow()
         {
             InitializeComponent();
-
             Init();
-
-            CreateConnection();
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
@@ -81,188 +67,25 @@ namespace LapTimer
 
         private void Fill_DataGrid_Ranking()
         {
-            dataGrid_Ranking.ItemsSource = Retrieve_Player_Ranking();
+            dataGrid_Ranking.ItemsSource = databaseManager.Retrieve_Player_Ranking();
         }
         private void Fill_DataGrid_Queue()
         {
-            dataGrid_Player_Queue.ItemsSource = Retrieve_Player_Queue();
+            dataGrid_Player_Queue.ItemsSource = databaseManager.Retrieve_Player_Queue();
         }
 
-        private void CreateConnection()
-        {
-            try
-            {
-                connection = new SQLiteConnection(dataSource);
-                connection.Open();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-                using (EventLog eventLog = new EventLog("Application"))
-                {
-                    eventLog.Source = "Application";
-                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
-                }
-            }
-        }
-
-        /// <summary>
-        /// Function to Close a Connection
-        /// </summary>
-        public void CloseConnection()
-        {
-            //connection.Close();
-        }
-
-        private ObservableCollection<Player> Retrieve_Player_Queue()
-        {
-            try
-            {
-                if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();
-
-                ObservableCollection<Player> player = new ObservableCollection<Player>();
-
-                SQLiteCommand command = new SQLiteCommand("select P.ID, P.Name, P.Surname, Q.Number_Race, Q.Paid from Player P, Queue Q where P.ID = Q.ID_User order by Q.Datetime", connection);
-                SQLiteDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                    player.Add(new Player { ID = Convert.ToInt32(reader["ID"]), Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Number_Race = Convert.ToInt32(reader["Number_Race"]), Paid = Convert.ToInt32(reader["Paid"]) });
-
-
-                reader.Close();
-                return player;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                using (EventLog eventLog = new EventLog("Application"))
-                {
-                    eventLog.Source = "Application";
-                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
-                }
-                return null;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
-        public ObservableCollection<Player> Retrieve_Player_Ranking()
-        {
-            try
-            {
-                if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();
-                ObservableCollection<Player> player = new ObservableCollection<Player>();
-
-
-                SQLiteCommand command = new SQLiteCommand("select Name, Surname, Time_Score from Player, Ranking where ID = ID_User order by Time_Score", connection);
-                SQLiteDataReader reader = command.ExecuteReader();
-
-                while (reader.Read())
-                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time_Score"].ToString() });
-
-
-                reader.Close();
-                return player;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                using (EventLog eventLog = new EventLog("Application"))
-                {
-                    eventLog.Source = "Application";
-                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
-                }
-                return null;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
-
-        private int Check_Existing_Player(String Name, String Surname)
-        {
-            try
-            {
-                if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();
-
-                SQLiteCommand command = new SQLiteCommand("select ID from Player where Name = @Name AND Surname = @Surname", connection);
-                command.Parameters.AddWithValue("@Name", Name);
-                command.Parameters.AddWithValue("@Surname", Surname);
-                SQLiteDataReader reader = command.ExecuteReader();
-
-                if (reader != null)
-                {
-                    if (reader.Read())
-                        return Convert.ToInt32(reader["ID"]);
-                    else
-                        return 0;
-                }
-                else
-                    return 0;
-            }
-
-            catch (Exception e)
-            {
-
-                Console.Write(e);
-                using (EventLog eventLog = new EventLog("Application"))
-                {
-                    eventLog.Source = "Application";
-                    eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
-                }
-                return 0;
-            }
-            finally
-            {
-                CloseConnection();
-            }
-        }
 
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
-            int ID_User = Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
+            int ID_User = databaseManager.Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
 
             if (ID_User == 0)
             {
-                if (connection.State == System.Data.ConnectionState.Closed)
-                    connection.Open();
-
-                using (SQLiteCommand command = new SQLiteCommand("insert into Player(Name, Surname, Contact, Age) values (@Name, @Surname, @Contact, @Age)", connection))
-                {
-                    command.Parameters.AddWithValue("@Name", txt_Name.Text);
-                    command.Parameters.AddWithValue("@Surname", txt_Surname.Text);
-                    command.Parameters.AddWithValue("@Contact", txt_Contact.Text);
-                    command.Parameters.AddWithValue("@Age", txt_Age.Text);
-                    command.ExecuteNonQuery();
-
-                    CloseConnection();
-
-                    ID_User = Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
-                }
-
-
+                databaseManager.Add_New_Player(txt_Name.Text, txt_Surname.Text, txt_Contact.Text, txt_Age.Text);
+                ID_User = databaseManager.Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
             }
 
-            if (connection.State == System.Data.ConnectionState.Closed)
-                connection.Open();
-            using (SQLiteCommand command = new SQLiteCommand("insert into Queue(ID_User, Number_Race, Paid) values (@ID_User, @Number_Race, @Paid)", connection))
-            {
-                command.Parameters.AddWithValue("@ID_User", ID_User);
-                command.Parameters.AddWithValue("@Number_Race", txt_Number_Race.Text);
-                if (radioButton_Paid.IsChecked == true)
-                    command.Parameters.AddWithValue("@Paid", 1);
-                else
-                    command.Parameters.AddWithValue("@Paid", 0);
-                command.ExecuteNonQuery();
-            }
-
-            CloseConnection();
+            databaseManager.Add_Player_In_Queue(ID_User,txt_Number_Race.Text,(bool)radioButton_Paid.IsChecked);
 
             Fill_DataGrid_Queue();
 
@@ -271,45 +94,8 @@ namespace LapTimer
 
         private void Btn_Delete_Player_Queue_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                if (dataGrid_Player_Queue.SelectedItems != null && dataGrid_Player_Queue.SelectedItems.Count == 1)
-                {
-                    DataGridRow dgr = dataGrid_Player_Queue.ItemContainerGenerator.ContainerFromItem(dataGrid_Player_Queue.SelectedItem) as DataGridRow;
-                    current_Player = new Player();
-                    current_Player = (Player)dgr.Item;
-
-
-                    if (connection.State == System.Data.ConnectionState.Closed)
-                        connection.Open();
-
-                    using (SQLiteCommand command = new SQLiteCommand("delete from Queue where ID_User = @ID_User", connection))
-                    {
-                        command.Parameters.AddWithValue("@ID_User", current_Player.ID);
-                        command.ExecuteNonQuery();
-                    }
-
-                    MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-
-
-            }
-
-            catch (Exception ex)
-            {
-
-                Console.Write(ex);
-                using (EventLog eventLog = new EventLog("Application"))
-                {
-                    eventLog.Source = "Application";
-                    eventLog.WriteEntry(ex.Message, EventLogEntryType.Error);
-                }
-            }
-            finally
-            {
-                CloseConnection();
-                Fill_DataGrid_Queue();
-            }
+            databaseManager.Delete_Player_Queue(dataGrid_Player_Queue, current_Player);
+            Fill_DataGrid_Queue();
         }
 
         private void player_Queue_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -327,34 +113,6 @@ namespace LapTimer
                         MessageBox.Show("Questo giocatore non ha pagato", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 
                 }
-            }
-        }
-
-        private void Save_Best_Time_Lap(int ID_User, string Time_Score)
-        {
-            if (connection.State == System.Data.ConnectionState.Closed)
-                connection.Open();
-
-            using (SQLiteCommand command = new SQLiteCommand("insert into Ranking(ID_User, Time_Score) values (@ID_User, @Time_Score)", connection))
-            {
-                command.Parameters.AddWithValue("@ID_User", ID_User);
-                command.Parameters.AddWithValue("@Time_Score", Time_Score);
-                command.ExecuteNonQuery();
-
-            }
-        }
-
-        private void Save_Time_Lap(int ID_User, string Time_Score)
-        {
-            if (connection.State == System.Data.ConnectionState.Closed)
-                connection.Open();
-
-            using (SQLiteCommand command = new SQLiteCommand("insert into Time_Story(ID_Player, Time) values (@ID_Player, @Time)", connection))
-            {
-                command.Parameters.AddWithValue("@ID_Player", ID_User);
-                command.Parameters.AddWithValue("@Time", Time_Score);
-                command.ExecuteNonQuery();
-
             }
         }
 
@@ -543,10 +301,10 @@ namespace LapTimer
                 {
                     best_time = lap_time;
                     WriteTime(best_label, lap_time);
-                    Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
+                    databaseManager.Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
                     Fill_DataGrid_Ranking();
                 }
-                Save_Time_Lap(current_Player.ID, last_label.Content.ToString());
+                databaseManager.Save_Time_Lap(current_Player.ID, last_label.Content.ToString());
                 WriteTime(last_label, lap_time);
                 lap_time = 0;
                 found = false;
@@ -583,6 +341,12 @@ namespace LapTimer
         private void Btn_Simula_sensore_Click(object sender, RoutedEventArgs e)
         {
             found = true;
+        }
+
+        /*---------------------------- FUNZIONI GESTIONE APPLICAZIONE --------------------------------------------*/
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            databaseManager.CloseConnection();
         }
     }
 }

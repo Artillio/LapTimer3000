@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LapTimer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="1080" Width="1920" Background="White">
+        Title="LapTimer3000" Height="1080" Width="1920" Background="White"
+        Closing="Window_Closing">
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>
