@@ -41,3 +41,4 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.applica
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CopyComplete
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.exe
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.pdb
+C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csprojAssemblyReference.cache

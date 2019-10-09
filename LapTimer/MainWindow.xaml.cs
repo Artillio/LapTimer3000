@@ -61,14 +61,22 @@ namespace LapTimer
             beep2 = new SoundPlayer(".\\Sounds\\beep2.wav");
             InitTimers();
             SearchCOM();
+
+
         }
 
         /*---------------------------- FUNZIONI PER IL DATABASE --------------------------------------------*/
-
+        /// <summary>
+        /// Funzione che serve per fillare le datagrid con la classifica dei giocatori
+        /// </summary>
         private void Fill_DataGrid_Ranking()
         {
             dataGrid_Ranking.ItemsSource = databaseManager.Retrieve_Player_Ranking();
         }
+
+        /// <summary>
+        /// Funzione che serve per fillare le datagrid i giocatori in coda
+        /// </summary>
         private void Fill_DataGrid_Queue()
         {
             dataGrid_Player_Queue.ItemsSource = databaseManager.Retrieve_Player_Queue();
@@ -122,7 +130,10 @@ namespace LapTimer
         private void SearchCOM()
         {
             String[] ports = SerialPort.GetPortNames();
-            comboBox_COM.ItemsSource = ports;
+            foreach(string port in ports)
+                comboBox_COM.Items.Add(port);
+            comboBox_COM.Items.Insert(0, " -- Select COM -- ");
+            comboBox_COM.SelectedIndex = 0;
         }
         
         private void ConnectBtn_Click(object sender, RoutedEventArgs e)
@@ -329,6 +340,11 @@ namespace LapTimer
             }
         }
 
+        /// <summary>
+        /// Alla pressione del bottone di reset la funziona rimette tutti i valori a uno stato iniziale
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Btn_Reset_Click(object sender, RoutedEventArgs e)
         {
             btn_Reset.IsHitTestVisible = false;
@@ -344,6 +360,11 @@ namespace LapTimer
         }
 
         /*---------------------------- FUNZIONI GESTIONE APPLICAZIONE --------------------------------------------*/
+        /// <summary>
+        /// Funzione che alla chiusura dell'applicazione chiude la connessione col database
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             databaseManager.CloseConnection();
