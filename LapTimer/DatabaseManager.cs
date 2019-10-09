@@ -234,11 +234,11 @@ namespace LapTimer
                 ObservableCollection<Player> player = new ObservableCollection<Player>();
 
 
-                SQLiteCommand command = new SQLiteCommand("select Name, Surname, Time_Score from Player, Ranking where ID = ID_User order by Time_Score", connection);
+                SQLiteCommand command = new SQLiteCommand("select ID, Name, Surname, Time_Score from Player, Ranking where ID = ID_User order by Time_Score", connection);
                 SQLiteDataReader reader = command.ExecuteReader();
 
                 while (reader.Read())
-                    player.Add(new Player { Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time_Score"].ToString() });
+                    player.Add(new Player { ID = Convert.ToInt32(reader["ID"]), Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time_Score"].ToString() });
 
 
                 reader.Close();
