@@ -113,3 +113,11 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\Sounds\beep1.wav
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\Sounds\beep2.wav
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\bin\Debug\Sounds\race_countdown.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\Sounds\race_countdown.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\Sounds\beep1.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\Sounds\beep2.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\LapTimer3001.db
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\LapTimer.exe.manifest
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Debug\LapTimer.application
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.exe.manifest
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Debug\LapTimer.application

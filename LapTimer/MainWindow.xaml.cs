@@ -47,7 +47,6 @@ namespace LapTimer
         long lap_time = 0, best_lap = 0;
         bool found = false;                 // true=macchinina presente, false altrimenti
         private const string dataSource = "Data Source=.\\LapTimer3001.db;Version=3;";
-        //private const string dataSource = "Data Source=C:\\Users\\Lorenzo\\Desktop\\Macchinine sagra\\LapTimer3000\\LapTimer\\LapTimer3001.db;";
         internal SQLiteConnection connection;
         SerialPort serialPort;
         Stopwatch stopWatch_lap, stopWatch_race;    // real-time timer
@@ -63,7 +62,7 @@ namespace LapTimer
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
-            //btn_StartRace.IsEnabled = false;  // da inserire in release
+            btn_StartRace.IsHitTestVisible = false;  // da inserire in release
             // cerco le porte seriali utilizzate e le elenco nel ComboBox
             String[] ports = SerialPort.GetPortNames();
             comboBox_COM.ItemsSource = ports;
@@ -358,7 +357,7 @@ namespace LapTimer
             {
                 comboBox_COM.IsEnabled = false;
                 ConnectBtn.IsEnabled = false;
-                btn_StartRace.IsEnabled = true;
+                btn_StartRace.IsHitTestVisible = true;
                 serialPort = new SerialPort("COM1", 9600);
                 serialPort.PortName = comboBox_COM.Text;
                 serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
@@ -385,8 +384,6 @@ namespace LapTimer
                 sem_timer.Interval = TimeSpan.FromMilliseconds(1000);
                 sem_timer.Tick += Timer_Tick_Sem;
                 btn_StartRace.IsHitTestVisible = false;
-                SetRaceTimer();
-                SetLapTimer();
                 sem = 0;
                 sem_timer.Start();
             }
@@ -428,6 +425,8 @@ namespace LapTimer
                     ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     beep2.Play();
+                    SetRaceTimer();
+                    SetLapTimer();
                     stopWatch_race.Start();
                     btn_PauseRace.IsHitTestVisible = true;
                     break;
@@ -517,6 +516,7 @@ namespace LapTimer
                     best_lap = lap_time;
                     best_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
                     Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
+                    Fill_DataGrid_Ranking();
                 }
                 last_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
                 Save_Time_Lap(current_Player.ID, last_label.Content.ToString());

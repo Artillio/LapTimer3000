@@ -17,6 +17,6 @@ void loop() {
 
   if (!found) {
     Serial.print(found);
-    delay(100);
+    delay(500);
   }
 }

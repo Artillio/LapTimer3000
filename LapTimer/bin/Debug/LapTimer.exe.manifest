@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Opzioni manifesto Controllo dell'account utente
-          Se si vuole modificare il livello di Controllo dell'account utente di Windows, sostituire il
-          nodo requestedExecutionLevel con uno dei seguenti.
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Se si vuole usare Virtualizzazione file system e registro di sistema per la 
-         compatibilità con le versioni precedenti, eliminare il nodo requestedExecutionLevel.
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>UofiIIQi5Zz16WbRrilGuKHtnyZK5UIYbGt5S58fUgA=</dsig:DigestValue>
+        <dsig:DigestValue>vcgnBB48fvfH5VDu8OA12HzaNPrz4EhJz4je3pFFPYo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
