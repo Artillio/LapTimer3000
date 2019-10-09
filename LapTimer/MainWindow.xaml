@@ -30,7 +30,7 @@
         <Label x:Name="best_label" Content="00:00:00" HorizontalAlignment="Center" Margin="590,316,1133,0" VerticalAlignment="Top" Width="189" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
         <Label x:Name="last_label" Content="00:00:00" HorizontalAlignment="Center" Margin="1128,316,596,0" VerticalAlignment="Top" Width="188" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
         <DataGrid x:Name="dataGrid_Ranking" IsReadOnly="True" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black"/>
-        <Button x:Name="btn_StartRace" HorizontalAlignment="Left" Margin="832,112,0,0" VerticalAlignment="Top" Width="248" Height="128" Click="Btn_StartRace_Click" Foreground="White" BorderBrush="{x:Null}">
+        <Button x:Name="btn_Start" HorizontalAlignment="Left" Margin="828,112,0,0" VerticalAlignment="Top" Width="248" Height="128" Click="Btn_Start_Click" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False">
             <Button.Background>
                 <ImageBrush ImageSource="Images/star_image.jpg" Opacity="0.9" Stretch="UniformToFill"/>
             </Button.Background>
@@ -45,7 +45,7 @@
         <DataGrid x:Name="dataGrid_Player_Queue" IsReadOnly="True" MouseDoubleClick="player_Queue_MouseDoubleClick" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black">
         </DataGrid>
         <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="24" Margin="1663,465.5,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
-        <Button x:Name="btn_PauseRace" HorizontalAlignment="Left" Margin="1419,10,0,0" VerticalAlignment="Top" Width="133" Height="80" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False" Click="Btn_PauseRace_Click">
+        <Button x:Name="btn_Pause" HorizontalAlignment="Left" Margin="1419,10,0,0" VerticalAlignment="Top" Width="133" Height="80" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False" Click="Btn_Pause_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Images/pause_image.png" Opacity="0.9" Stretch="UniformToFill"/>
             </Button.Background>
@@ -108,5 +108,6 @@
             <Label Content="TEMPO CORRENTE" HorizontalAlignment="Left" Width="214" Margin="75,-1,0,63" Foreground="White" FontSize="24"/>
         </Border>
         <Label x:Name="lap_label" Content="00:00:00" HorizontalAlignment="Center" Margin="858,316,845,0" VerticalAlignment="Top" Width="197" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
+        <Button x:Name="btn_Reset" Content="Reset" HorizontalAlignment="Left" Height="63" Margin="383,25,0,0" VerticalAlignment="Top" Width="146" IsHitTestVisible="False" Click="Btn_Reset_Click" FontSize="20" FontWeight="Bold" Background="Red" Foreground="White"/>
     </Grid>
 </Window>

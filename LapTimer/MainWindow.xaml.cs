@@ -42,30 +42,39 @@ namespace LapTimer
     /// </summary>
     public partial class MainWindow : Window
     {
-        int sem = 0;                        // selettore dei semafori da accendere
-        long race_time = 0;
-        long lap_time = 0, best_lap = 0;
-        bool found = false;                 // true=macchinina presente, false altrimenti
+        int sem;                                // selettore dei semafori da accendere
+        long race_time, lap_time, best_time;    // tempi in millisecondi
+        bool found;                             // true=macchinina presente, false altrimenti
         private const string dataSource = "Data Source=.\\LapTimer3001.db;Version=3;";
         internal SQLiteConnection connection;
-        SerialPort serialPort;
-        Stopwatch stopWatch_lap, stopWatch_race;    // real-time timer
-        DispatcherTimer timer_giro, timercorsa; // timer per la visualizzazione il giro corrente
+        DispatcherTimer timer_sem, timer_race, timer_lap;   // timer per la visualizzazione
+        Stopwatch stopWatch_race, stopWatch_lap;            // real-time timers
         Player current_Player;
-        SoundPlayer beep1 = new SoundPlayer(".\\Sounds\\beep1.wav");
-        SoundPlayer beep2 = new SoundPlayer(".\\Sounds\\beep2.wav");
+        SoundPlayer beep1, beep2;
 
         public MainWindow()
         {
-            CreateConnection();
             InitializeComponent();
+
+            Init();
+
+            CreateConnection();
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
-            btn_StartRace.IsHitTestVisible = false;  // da inserire in release
-            // cerco le porte seriali utilizzate e le elenco nel ComboBox
-            String[] ports = SerialPort.GetPortNames();
-            comboBox_COM.ItemsSource = ports;
+            btn_Start.IsHitTestVisible = true; // da rimuovere in release
+        }
+
+        private void Init()
+        {
+            sem = 0;
+            race_time = 60000;
+            lap_time = best_time = 0;
+            found = false;
+            beep1 = new SoundPlayer(".\\Sounds\\beep1.wav");
+            beep2 = new SoundPlayer(".\\Sounds\\beep2.wav");
+            InitTimers();
+            SearchCOM();
         }
 
         /*---------------------------- FUNZIONI PER IL DATABASE --------------------------------------------*/
@@ -351,18 +360,25 @@ namespace LapTimer
 
         /*---------------------------- FUNZIONI PER ARDUINO --------------------------------------------*/
 
+        // cerco le porte seriali utilizzate e le elenco nel ComboBox
+        private void SearchCOM()
+        {
+            String[] ports = SerialPort.GetPortNames();
+            comboBox_COM.ItemsSource = ports;
+        }
+        
         private void ConnectBtn_Click(object sender, RoutedEventArgs e)
         {
             if (comboBox_COM.Text.StartsWith("COM"))
             {
                 comboBox_COM.IsEnabled = false;
                 ConnectBtn.IsEnabled = false;
-                btn_StartRace.IsHitTestVisible = true;
-                serialPort = new SerialPort("COM1", 9600);
+                SerialPort serialPort = new SerialPort("COM1", 9600);
                 serialPort.PortName = comboBox_COM.Text;
                 serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
                 serialPort.DtrEnable = true;
                 serialPort.Open();
+                btn_Start.IsHitTestVisible = true;
             }
         }
 
@@ -376,16 +392,31 @@ namespace LapTimer
 
         /*---------------------------- FUNZIONI GARA E TIMER --------------------------------------------*/
 
-        private void Btn_StartRace_Click(object sender, RoutedEventArgs e)
+        private void InitTimers()
+        {
+            timer_sem = new DispatcherTimer();
+            timer_sem.Interval = TimeSpan.FromMilliseconds(1000);
+            timer_sem.Tick += Timer_Tick_Sem;
+
+            stopWatch_race = new Stopwatch();
+            timer_race = new DispatcherTimer();
+            timer_race.Interval = TimeSpan.FromMilliseconds(1);
+            timer_race.Tick += Timer_Tick_Race;
+
+            stopWatch_lap = new Stopwatch();
+            timer_lap = new DispatcherTimer();
+            timer_lap.Interval = TimeSpan.FromMilliseconds(1);
+            timer_lap.Tick += Timer_Tick_Lap;
+        }
+        
+        private void Btn_Start_Click(object sender, RoutedEventArgs e)
         {
             if (current_Player != null)
             {
-                DispatcherTimer sem_timer = new DispatcherTimer();
-                sem_timer.Interval = TimeSpan.FromMilliseconds(1000);
-                sem_timer.Tick += Timer_Tick_Sem;
-                btn_StartRace.IsHitTestVisible = false;
+                btn_Start.IsHitTestVisible = false;
+                InitTimesAndLabels();
                 sem = 0;
-                sem_timer.Start();
+                timer_sem.Start();
             }
             else
             {
@@ -393,45 +424,63 @@ namespace LapTimer
             }
         }
 
+        private void InitTimesAndLabels()
+        {
+            race_time = 60000;
+            WriteTime(lbl_Time_Race, race_time);
+
+            lap_time = best_time = 0;
+            WriteTime(lap_label, lap_time);
+            WriteTime(last_label, 0);
+            WriteTime(best_label, best_time);
+
+            stopWatch_race.Reset();
+            stopWatch_lap.Reset();
+        }
+
+        private void WriteTime(Label label, long time)
+        {
+            long cent = (time / 10) % 100;
+            long sec = (time / 1000) % 60;
+            long min = (time / 1000) / 60;
+            label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+        }
+
         public void Timer_Tick_Sem(object sender, EventArgs e)
         {
-            DispatcherTimer sem_timer = (DispatcherTimer)sender;
             switch (sem)
             {
                 case 0:
-                    ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     beep1.Play();
+                    ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 1:
-                    ellipse_Light_2.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     beep1.Play();
+                    ellipse_Light_2.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 2:
-                    ellipse_Light_3.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     beep1.Play();
+                    ellipse_Light_3.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 3:
-                    ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     beep1.Play();
+                    ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 4:
-                    ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     beep1.Play();
+                    ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(0, 0, 255));
                     break;
                 case 5:
+                    beep2.Play();
                     ellipse_Light_1.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_2.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_3.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_4.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
                     ellipse_Light_5.Fill = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-                    beep2.Play();
-                    SetRaceTimer();
-                    SetLapTimer();
-                    stopWatch_race.Start();
-                    btn_PauseRace.IsHitTestVisible = true;
+                    StartRace();
                     break;
                 default:
-                    sem_timer.Stop();
+                    timer_sem.Stop();
                     ellipse_Light_1.Fill = new SolidColorBrush();
                     ellipse_Light_2.Fill = new SolidColorBrush();
                     ellipse_Light_3.Fill = new SolidColorBrush();
@@ -442,19 +491,21 @@ namespace LapTimer
             sem++;
         }
 
-        private void SetRaceTimer()
+        private void StartRace()
         {
-            // imposto i timer per la corsa
-            stopWatch_race = new Stopwatch();       // real-time timer
-            timercorsa = new DispatcherTimer();     // timer per la visualizzazione
-            timercorsa.Interval = TimeSpan.FromMilliseconds(1);
-            timercorsa.Tick += Timer_Tick_Race;
-            race_time = 60000;
-            long cent = (race_time / 10) % 100;
-            long sec = (race_time / 1000) % 60;
-            long min = (race_time / 1000) / 60;
-            lbl_Time_Race.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
-            timercorsa.Start();
+            timer_race.Start();
+            timer_lap.Start();
+            found = false;
+            stopWatch_race.Start();
+            btn_Pause.IsHitTestVisible = true;
+        }
+
+        private void StopRace()
+        {
+            stopWatch_lap.Stop();
+            stopWatch_race.Stop();
+            timer_lap.Stop();
+            timer_race.Stop();
         }
 
         public void Timer_Tick_Race(object sender, EventArgs e)
@@ -471,77 +522,61 @@ namespace LapTimer
             }
             else
             {
-                race_time = 0;
-                stopWatch_lap.Stop();
-                stopWatch_race.Stop();
-                timercorsa.Stop();
-                timer_giro.Stop();
-                btn_PauseRace.IsHitTestVisible = false;
-                btn_StartRace.IsHitTestVisible = true;
+                race_time = 0;  // se era per caso diventato negativo
+                StopRace();
+                btn_Pause.IsHitTestVisible = false;
+                btn_Start.IsHitTestVisible = true;
             }
 
-            long cent = (race_time / 10) % 100;
-            long sec = (race_time / 1000) % 60;
-            long min = (race_time / 1000) / 60;
-            lbl_Time_Race.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
-        }
-
-        private void SetLapTimer()
-        {
-            // imposto i timer per il giro
-            stopWatch_lap = new Stopwatch();        // real-time timer
-            timer_giro = new DispatcherTimer();     // timer per la visualizzazione
-            timer_giro.Interval = TimeSpan.FromMilliseconds(1);
-            timer_giro.Tick += Timer_Tick_Lap;
-            lap_time = best_lap = 0;
-            lap_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
-            last_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
-            best_label.Content = string.Format("{0:00}:{1:00},{2:00}", 0, 0, 0);
-            found = false;
-            timer_giro.Start();
+            WriteTime(lbl_Time_Race, race_time);
         }
 
         public void Timer_Tick_Lap(object sender, EventArgs e)
         {
             lap_time = stopWatch_lap.ElapsedMilliseconds;
-            long cent = (lap_time / 10) % 100;
-            long sec = (lap_time / 1000) % 60;
-            long min = (lap_time / 1000) / 60;
-            lap_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+            WriteTime(lap_label, lap_time);
 
-            if ((found || min > 5) && lap_time > 0)
+            long minuto = 1000 * 60;
+            if ((found == true || lap_time > 5 * minuto) && lap_time > 0)
             {
-                if (best_lap == 0 || lap_time < best_lap)
+                if (best_time == 0 || lap_time < best_time)
                 {
-                    best_lap = lap_time;
-                    best_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
+                    best_time = lap_time;
+                    WriteTime(best_label, lap_time);
                     Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
                     Fill_DataGrid_Ranking();
                 }
-                last_label.Content = string.Format("{0:00}:{1:00},{2:00}", min, sec, cent);
                 Save_Time_Lap(current_Player.ID, last_label.Content.ToString());
+                WriteTime(last_label, lap_time);
                 lap_time = 0;
-                stopWatch_lap.Restart();
                 found = false;
+                stopWatch_lap.Restart();
             }
         }
 
-        private void Btn_PauseRace_Click(object sender, RoutedEventArgs e)
+        private void Btn_Pause_Click(object sender, RoutedEventArgs e)
         {
             if (stopWatch_race.IsRunning == true)
             {
-                stopWatch_lap.Stop();
-                stopWatch_race.Stop();
-                timer_giro.Stop();
-                timercorsa.Stop();
+                StopRace();
+                btn_Reset.IsHitTestVisible = true;
             }
             else
             {
                 stopWatch_lap.Start();
                 stopWatch_race.Start();
-                timer_giro.Start();
-                timercorsa.Start();
+                timer_lap.Start();
+                timer_race.Start();
+                btn_Reset.IsHitTestVisible = false;
             }
+        }
+
+        private void Btn_Reset_Click(object sender, RoutedEventArgs e)
+        {
+            btn_Reset.IsHitTestVisible = false;
+            btn_Pause.IsHitTestVisible = false;
+            btn_Start.IsHitTestVisible = true;
+            InitTimesAndLabels();
         }
 
         // da rimuovere in release

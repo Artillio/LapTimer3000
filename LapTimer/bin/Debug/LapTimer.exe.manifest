@@ -49,7 +49,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vcgnBB48fvfH5VDu8OA12HzaNPrz4EhJz4je3pFFPYo=</dsig:DigestValue>
+        <dsig:DigestValue>KuHsGWWkGfpj6COLTdK7XkHBbvI4PPDQ7WvHpQSpf+s=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -179,22 +179,22 @@
       <dsig:DigestValue>XkTBMZ5w/FI9sJtMDt274Kjl453qgV/5WXH4Nnu+G2M=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sounds\beep1.wav" size="229364">
+  <file name="Sounds\beep1.wav" size="98888">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>UqGoTahgqKBAaQGsv3xys2ENJ9Dpi4O/C47rnuLrloI=</dsig:DigestValue>
+      <dsig:DigestValue>o2t3EXAgBfm5/SPOzEnkth2BeIogffXDDv2wORIpJoo=</dsig:DigestValue>
     </hash>
   </file>
-  <file name="Sounds\beep2.wav" size="299924">
+  <file name="Sounds\beep2.wav" size="118292">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>yneOB6nEL0tF4oB6sy2mDlKRQoaWsatkn3qMggBTJDc=</dsig:DigestValue>
+      <dsig:DigestValue>fxkwjVcAO6do870iZFibzDEi4yudVF1DcNkDXXituy0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Sounds\race_countdown.wav" size="1322082">
