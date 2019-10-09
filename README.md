@@ -10,3 +10,4 @@ COSE DA AGGIUNGERE
  - Animazione di fine gara
  - pulsante reset
  - resettare le label prima di iniziare le gare
+ - Partenza race al primo passaggio?
