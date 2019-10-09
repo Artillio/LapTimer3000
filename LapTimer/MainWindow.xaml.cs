@@ -40,6 +40,7 @@ namespace LapTimer
         Player current_Player;
         SoundPlayer beep1, beep2;
         DatabaseManager databaseManager = new DatabaseManager();
+        SerialPort serialPort;
 
         public MainWindow()
         {
@@ -142,7 +143,7 @@ namespace LapTimer
             {
                 comboBox_COM.IsEnabled = false;
                 ConnectBtn.IsEnabled = false;
-                SerialPort serialPort = new SerialPort("COM1", 9600);
+                serialPort = new SerialPort("COM1", 9600);
                 serialPort.PortName = comboBox_COM.Text;
                 serialPort.DataReceived += new SerialDataReceivedEventHandler(serialPort_DataReceived);
                 serialPort.DtrEnable = true;
