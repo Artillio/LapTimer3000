@@ -20,9 +20,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.IO.Ports;
-using System.Data;
 using System.Media;
-using System.IO;
 
 namespace LapTimer
 {
@@ -39,7 +37,7 @@ namespace LapTimer
         Stopwatch stopWatch_race, stopWatch_lap;            // real-time timers
         Player current_Player;
         SoundPlayer beep1, beep2;
-        DatabaseManager databaseManager = new DatabaseManager();
+        DatabaseManager databaseManager;
         SerialPort serialPort;
 
         public MainWindow()
@@ -48,7 +46,7 @@ namespace LapTimer
             Init();
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
-
+            
             btn_Start.IsHitTestVisible = true; // da rimuovere in release
         }
 
@@ -60,13 +58,13 @@ namespace LapTimer
             found = false;
             beep1 = new SoundPlayer(".\\Sounds\\beep1.wav");
             beep2 = new SoundPlayer(".\\Sounds\\beep2.wav");
+            databaseManager = new DatabaseManager();
             InitTimers();
             SearchCOM();
-
-
         }
 
         /*---------------------------- FUNZIONI PER IL DATABASE --------------------------------------------*/
+
         /// <summary>
         /// Funzione che serve per fillare le datagrid con la classifica dei giocatori
         /// </summary>
@@ -83,7 +81,6 @@ namespace LapTimer
             dataGrid_Player_Queue.ItemsSource = databaseManager.Retrieve_Player_Queue();
         }
 
-
         private void Btn_AddPlayer_Click(object sender, RoutedEventArgs e)
         {
             int ID_User = databaseManager.Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
@@ -97,8 +94,6 @@ namespace LapTimer
             databaseManager.Add_Player_In_Queue(ID_User,txt_Number_Race.Text,(bool)radioButton_Paid.IsChecked);
 
             Fill_DataGrid_Queue();
-
-
         }
 
         private void Btn_Delete_Player_Queue_Click(object sender, RoutedEventArgs e)
@@ -120,7 +115,6 @@ namespace LapTimer
 
                     if (current_Player.Paid == 0)
                         MessageBox.Show("Questo giocatore non ha pagato", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-
                 }
             }
         }
@@ -154,8 +148,7 @@ namespace LapTimer
 
         private void serialPort_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            SerialPort sp = (SerialPort)sender;
-            char indata = (char)sp.ReadChar();
+            char indata = (char)serialPort.ReadChar();
             if (indata == '0')
                 found = true;
         }
@@ -361,6 +354,7 @@ namespace LapTimer
         }
 
         /*---------------------------- FUNZIONI GESTIONE APPLICAZIONE --------------------------------------------*/
+
         /// <summary>
         /// Funzione che alla chiusura dell'applicazione chiude la connessione col database
         /// </summary>

@@ -21,7 +21,6 @@ namespace LapTimer
             CreateConnection();
         }
 
-
         private void CreateConnection()
         {
             try
@@ -55,7 +54,6 @@ namespace LapTimer
                     current_Player = new Player();
                     current_Player = (Player)dgr.Item;
 
-
                     if (connection.State == System.Data.ConnectionState.Closed)
                         connection.Open();
 
@@ -67,13 +65,9 @@ namespace LapTimer
 
                     MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
-
-
             }
-
             catch (Exception ex)
             {
-
                 Console.Write(ex);
                 using (EventLog eventLog = new EventLog("Application"))
                 {
@@ -109,10 +103,8 @@ namespace LapTimer
                 else
                     return 0;
             }
-
             catch (Exception e)
             {
-
                 Console.Write(e);
                 using (EventLog eventLog = new EventLog("Application"))
                 {
@@ -172,7 +164,6 @@ namespace LapTimer
                 command.Parameters.AddWithValue("@ID_User", ID_User);
                 command.Parameters.AddWithValue("@Time_Score", Time_Score);
                 command.ExecuteNonQuery();
-
             }
         }
 
@@ -186,7 +177,6 @@ namespace LapTimer
                 command.Parameters.AddWithValue("@ID_Player", ID_User);
                 command.Parameters.AddWithValue("@Time", Time_Score);
                 command.ExecuteNonQuery();
-
             }
         }
 
@@ -204,7 +194,6 @@ namespace LapTimer
 
                 while (reader.Read())
                     player.Add(new Player { ID = Convert.ToInt32(reader["ID"]), Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Number_Race = Convert.ToInt32(reader["Number_Race"]), Paid = Convert.ToInt32(reader["Paid"]) });
-
 
                 reader.Close();
                 return player;
@@ -239,7 +228,6 @@ namespace LapTimer
 
                 while (reader.Read())
                     player.Add(new Player { ID = Convert.ToInt32(reader["ID"]), Name = reader["Name"].ToString(), Surname = reader["Surname"].ToString(), Time = reader["Time_Score"].ToString() });
-
 
                 reader.Close();
                 return player;
