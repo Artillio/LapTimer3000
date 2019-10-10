@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="589280">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="589792">
       <assemblyIdentity name="LapTimer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zBqkbE3t5/0LI5WTX1weU9b7KXQGjv7JBil/aZudQAA=</dsig:DigestValue>
+        <dsig:DigestValue>r1UGaV0qn77mkUd+edKWfrU8JWI0Cz3pL/m9Oi/Z1pI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
