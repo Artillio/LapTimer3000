@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Opzioni manifesto Controllo dell'account utente
-          Se si vuole modificare il livello di Controllo dell'account utente di Windows, sostituire il
+          Opzioni manifesto di Controllo dell'account utente
+          Per modificare il livello di Controllo dell'account utente Windows sostituire il
           nodo requestedExecutionLevel con uno dei seguenti.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Se si vuole usare Virtualizzazione file system e registro di sistema per la 
-         compatibilità con le versioni precedenti, eliminare il nodo requestedExecutionLevel.
+         Se si vuole usare Virtualizzazione file system e registro di sistema per la compatibilità
+         con le versioni precedenti, eliminare il nodo requestedExecutionLevel.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="148448">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="589280">
       <assemblyIdentity name="LapTimer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Z2Y3UCLe+1+v+Ml+JgIO4CLsdb4onseICBwvruS2oKI=</dsig:DigestValue>
+        <dsig:DigestValue>PQo4Phax86Z+DhbtMis7eDSQgZhvrlQebI1uh1Q0PJQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

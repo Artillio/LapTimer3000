@@ -46,7 +46,7 @@
         <DataGrid x:Name="dataGrid_Player_Queue" IsReadOnly="True" MouseDoubleClick="player_Queue_MouseDoubleClick" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black">
         </DataGrid>
         <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="24" Margin="1663,465.5,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120" Grid.Row="2"/>
-        <Button x:Name="btn_Pause" HorizontalAlignment="Left" Margin="1419,10,0,0" VerticalAlignment="Top" Width="133" Height="80" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False" Click="Btn_Pause_Click">
+        <Button x:Name="btn_Pause" HorizontalAlignment="Left" Margin="1394,50,0,0" VerticalAlignment="Top" Width="133" Height="80" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False" Click="Btn_Pause_Click">
             <Button.Background>
                 <ImageBrush ImageSource="Images/pause_image.png" Opacity="0.9" Stretch="UniformToFill"/>
             </Button.Background>
@@ -109,6 +109,10 @@
             <Label Content="TEMPO CORRENTE" HorizontalAlignment="Left" Width="214" Margin="75,-1,0,63" Foreground="White" FontSize="24"/>
         </Border>
         <Label x:Name="lap_label" Content="00:00:00" HorizontalAlignment="Center" Margin="858,316,845,0" VerticalAlignment="Top" Width="197" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
-        <Button x:Name="btn_Reset" Content="Reset" HorizontalAlignment="Left" Height="63" Margin="383,25,0,0" VerticalAlignment="Top" Width="146" IsHitTestVisible="False" Click="Btn_Reset_Click" FontSize="20" FontWeight="Bold" Background="Red" Foreground="White"/>
+        <Button x:Name="btn_Reset" HorizontalAlignment="Left" Height="125" Margin="377,25,0,0" VerticalAlignment="Top" Width="125" IsHitTestVisible="False" Click="Btn_Reset_Click" BorderBrush="{x:Null}">
+            <Button.Background>
+                <ImageBrush ImageSource="Images/reset_image.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
