@@ -145,7 +145,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Resource Include="Images\reset_image.png" />
-    <Resource Include="592553_5c7c5.gif" />
     <Content Include="Sounds\beep1.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
