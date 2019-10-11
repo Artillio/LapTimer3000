@@ -91,7 +91,7 @@ namespace LapTimer
                 ID_User = databaseManager.Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
             }
 
-            databaseManager.Add_Player_In_Queue(ID_User,txt_Number_Race.Text,(bool)radioButton_Paid.IsChecked);
+            databaseManager.Add_Player_In_Queue(ID_User, txt_Number_Race.Text, (bool)radioButton_Paid.IsChecked);
 
             Fill_DataGrid_Queue();
         }
@@ -102,20 +102,22 @@ namespace LapTimer
             Fill_DataGrid_Queue();
         }
 
-        private void player_Queue_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void DataGrid_Player_Queue_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            if (sender != null)
+            if (dataGrid_Player_Queue.SelectedItems.Count == 1)
             {
-                DataGrid grid = sender as DataGrid;
-                if (grid != null && grid.SelectedItems != null && grid.SelectedItems.Count == 1)
-                {
-                    DataGridRow dgr = grid.ItemContainerGenerator.ContainerFromItem(grid.SelectedItem) as DataGridRow;
-                    current_Player = new Player();
-                    current_Player = (Player)dgr.Item;
+                DataGridRow dgr = dataGrid_Player_Queue.ItemContainerGenerator.ContainerFromItem(dataGrid_Player_Queue.SelectedItem) as DataGridRow;
+                current_Player = new Player();
+                current_Player = (Player)dgr.Item;
 
-                    if (current_Player.Paid == 0)
-                        MessageBox.Show("Questo giocatore non ha pagato", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
+                if (current_Player.Paid == 0)
+                    MessageBox.Show("Questo giocatore non ha pagato.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else if (dataGrid_Player_Queue.SelectedItems.Count > 1)
+            {
+                MessageBox.Show("Seleziona un solo giocatore per iniziare la gara.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                current_Player = null;
+                dataGrid_Player_Queue.SelectedItems.Clear();
             }
         }
 
@@ -177,13 +179,14 @@ namespace LapTimer
             if (current_Player != null)
             {
                 btn_Start.IsHitTestVisible = false;
+                dataGrid_Player_Queue.IsHitTestVisible = false;
                 InitTimesAndLabels();
                 sem = 0;
                 timer_sem.Start();
             }
             else
             {
-                MessageBox.Show("Prima di inizare una gara bisogna selezionare un giocatore", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Prima di inizare una gara bisogna selezionare un giocatore.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
 
@@ -269,6 +272,8 @@ namespace LapTimer
             stopWatch_race.Stop();
             timer_lap.Stop();
             timer_race.Stop();
+
+
         }
 
         public void Timer_Tick_Race(object sender, EventArgs e)
@@ -287,11 +292,17 @@ namespace LapTimer
             {
                 race_time = 0;  // se era per caso diventato negativo
                 StopRace();
-                btn_Pause.IsHitTestVisible = false;
-                btn_Start.IsHitTestVisible = true;
+                ResetButtons();
             }
 
             WriteTime(lbl_Time_Race, race_time);
+        }
+
+        private void ResetButtons()
+        {
+            btn_Pause.IsHitTestVisible = false;
+            dataGrid_Player_Queue.IsHitTestVisible = true;
+            btn_Start.IsHitTestVisible = true;
         }
 
         public void Timer_Tick_Lap(object sender, EventArgs e)
@@ -342,8 +353,7 @@ namespace LapTimer
         private void Btn_Reset_Click(object sender, RoutedEventArgs e)
         {
             btn_Reset.IsHitTestVisible = false;
-            btn_Pause.IsHitTestVisible = false;
-            btn_Start.IsHitTestVisible = true;
+            ResetButtons();
             InitTimesAndLabels();
         }
 

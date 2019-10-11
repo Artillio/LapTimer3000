@@ -7,7 +7,7 @@ ISTRUZIONI PER L'USO
  - Avviare il programma
  - Selezionare la porta COM a cui è collegato Arduino e premere Connect
  - Aggiungere giocatori per le gare
- - Selezionare con DoppioClick il giocatore della tabella di destra (Tabella della coda dei giocatori) che sta andando in gara
+ - Selezionare il giocatore della tabella di destra (Tabella della coda dei giocatori) che sta andando in gara
  - Premere Start
 
 COSE DA SISTEMARE

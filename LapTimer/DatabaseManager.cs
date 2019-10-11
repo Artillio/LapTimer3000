@@ -48,7 +48,7 @@ namespace LapTimer
         {
             try
             {
-                if (dataGrid_Player_Queue.SelectedItems != null && dataGrid_Player_Queue.SelectedItems.Count == 1)
+                if (dataGrid_Player_Queue.SelectedItems.Count == 1)
                 {
                     DataGridRow dgr = dataGrid_Player_Queue.ItemContainerGenerator.ContainerFromItem(dataGrid_Player_Queue.SelectedItem) as DataGridRow;
                     current_Player = new Player();
@@ -75,10 +75,6 @@ namespace LapTimer
                     eventLog.WriteEntry(ex.Message, EventLogEntryType.Error);
                 }
             }
-            finally
-            {
-                //CloseConnection();
-            }
         }
 
         public int Check_Existing_Player(String Name, String Surname)
@@ -88,20 +84,14 @@ namespace LapTimer
                 if (connection.State == System.Data.ConnectionState.Closed)
                     connection.Open();
 
-                SQLiteCommand command = new SQLiteCommand("select ID from Player where Name = @Name AND Surname = @Surname", connection);
+                SQLiteCommand command = new SQLiteCommand("select ID from Player where Name = @Name and Surname = @Surname", connection);
                 command.Parameters.AddWithValue("@Name", Name);
                 command.Parameters.AddWithValue("@Surname", Surname);
                 SQLiteDataReader reader = command.ExecuteReader();
 
-                if (reader != null)
-                {
-                    if (reader.Read())
-                        return Convert.ToInt32(reader["ID"]);
-                    else
-                        return 0;
-                }
-                else
-                    return 0;
+                if (reader.Read())
+                    return Convert.ToInt32(reader["ID"]);
+                return 0;
             }
             catch (Exception e)
             {
@@ -112,10 +102,6 @@ namespace LapTimer
                     eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
                 }
                 return 0;
-            }
-            finally
-            {
-                //CloseConnection();
             }
         }
 
@@ -131,8 +117,6 @@ namespace LapTimer
                 command.Parameters.AddWithValue("@Contact", Contact);
                 command.Parameters.AddWithValue("@Age", Age);
                 command.ExecuteNonQuery();
-
-                //CloseConnection();
             }
         }
 
@@ -140,6 +124,7 @@ namespace LapTimer
         {
             if (connection.State == System.Data.ConnectionState.Closed)
                 connection.Open();
+
             using (SQLiteCommand command = new SQLiteCommand("insert into Queue(ID_User, Number_Race, Paid) values (@ID_User, @Number_Race, @Paid)", connection))
             {
                 command.Parameters.AddWithValue("@ID_User", ID_User);
@@ -150,8 +135,6 @@ namespace LapTimer
                     command.Parameters.AddWithValue("@Paid", 0);
                 command.ExecuteNonQuery();
             }
-
-            //CloseConnection();
         }
 
         public void Save_Best_Time_Lap(int ID_User, string Time_Score)
@@ -208,10 +191,6 @@ namespace LapTimer
                 }
                 return null;
             }
-            finally
-            {
-                //CloseConnection();
-            }
         }
 
         public ObservableCollection<Player> Retrieve_Player_Ranking()
@@ -220,8 +199,8 @@ namespace LapTimer
             {
                 if (connection.State == System.Data.ConnectionState.Closed)
                     connection.Open();
-                ObservableCollection<Player> player = new ObservableCollection<Player>();
 
+                ObservableCollection<Player> player = new ObservableCollection<Player>();
 
                 SQLiteCommand command = new SQLiteCommand("select ID, Name, Surname, Time_Score from Player, Ranking where ID = ID_User order by Time_Score", connection);
                 SQLiteDataReader reader = command.ExecuteReader();
@@ -241,10 +220,6 @@ namespace LapTimer
                     eventLog.WriteEntry(e.Message, EventLogEntryType.Error);
                 }
                 return null;
-            }
-            finally
-            {
-                //CloseConnection();
             }
         }
     }
