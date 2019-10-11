@@ -44,7 +44,7 @@ namespace LapTimer
             connection.Close();
         }
 
-        public void Delete_Player_Queue(DataGrid dataGrid_Player_Queue, Player current_Player)
+        public void Delete_Player_Queue(DataGrid dataGrid_Player_Queue, Player current_Player, bool btn)
         {
             try
             {
@@ -63,7 +63,8 @@ namespace LapTimer
                         command.ExecuteNonQuery();
                     }
 
-                    MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    if (btn)
+                        MessageBox.Show("Eliminato la corsa di " + current_Player.Name + " " + current_Player.Surname, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
             catch (Exception ex)

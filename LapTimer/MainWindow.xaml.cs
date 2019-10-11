@@ -98,8 +98,11 @@ namespace LapTimer
 
         private void Btn_Delete_Player_Queue_Click(object sender, RoutedEventArgs e)
         {
-            databaseManager.Delete_Player_Queue(dataGrid_Player_Queue, current_Player);
-            Fill_DataGrid_Queue();
+            if (current_Player != null)
+            {
+                databaseManager.Delete_Player_Queue(dataGrid_Player_Queue, current_Player, true);
+                Fill_DataGrid_Queue();
+            }
         }
 
         private void DataGrid_Player_Queue_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
@@ -115,7 +118,7 @@ namespace LapTimer
             }
             else if (dataGrid_Player_Queue.SelectedItems.Count > 1)
             {
-                MessageBox.Show("Seleziona un solo giocatore per iniziare la gara.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Seleziona un solo giocatore.", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 current_Player = null;
                 dataGrid_Player_Queue.SelectedItems.Clear();
             }
@@ -192,7 +195,10 @@ namespace LapTimer
 
         private void InitTimesAndLabels()
         {
-            race_time = 60000;
+            if (current_Player != null)
+                race_time = 60000 * current_Player.Number_Race;
+            else
+                race_time = 60000;
             WriteTime(lbl_Time_Race, race_time);
 
             lap_time = best_time = 0;
@@ -272,15 +278,13 @@ namespace LapTimer
             stopWatch_race.Stop();
             timer_lap.Stop();
             timer_race.Stop();
-
-
         }
 
         public void Timer_Tick_Race(object sender, EventArgs e)
         {
-            race_time = 60000 - stopWatch_race.ElapsedMilliseconds;
+            long actual_race_time = race_time - stopWatch_race.ElapsedMilliseconds;
 
-            if (race_time > 0)
+            if (actual_race_time > 0)
             {
                 if (found == true && lap_time == 0)
                 {
@@ -290,12 +294,20 @@ namespace LapTimer
             }
             else
             {
-                race_time = 0;  // se era per caso diventato negativo
+                actual_race_time = 0;  // se era per caso diventato negativo
                 StopRace();
+                if (best_time > 0)
+                {
+                    databaseManager.Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
+                    Fill_DataGrid_Ranking();
+                }
+                // inserire qui l'animazione di fine gara
+                databaseManager.Delete_Player_Queue(dataGrid_Player_Queue, current_Player, false);
+                Fill_DataGrid_Queue();
                 ResetButtons();
             }
 
-            WriteTime(lbl_Time_Race, race_time);
+            WriteTime(lbl_Time_Race, actual_race_time);
         }
 
         private void ResetButtons()
@@ -317,8 +329,6 @@ namespace LapTimer
                 {
                     best_time = lap_time;
                     WriteTime(best_label, lap_time);
-                    databaseManager.Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
-                    Fill_DataGrid_Ranking();
                 }
                 databaseManager.Save_Time_Lap(current_Player.ID, last_label.Content.ToString());
                 WriteTime(last_label, lap_time);
