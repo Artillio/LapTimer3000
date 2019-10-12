@@ -2,6 +2,7 @@
  Miglior Lap Timer di tutti i tempi
 
 #STAYWITHTONY
+
 ISTRUZIONI PER L'USO
  - Collegare Arduino al computer tramite cavo USB
  - Avviare il programma
