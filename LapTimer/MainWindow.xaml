@@ -103,7 +103,7 @@
         <GroupBox x:Name="groupBox_Arduino" Header="Connect to Arduino" HorizontalAlignment="Left" Height="88" Margin="10,375,0,0" Grid.Row="2" VerticalAlignment="Top" Width="387" Foreground="White" FontSize="16"/>
         <ComboBox x:Name="comboBox_COM" HorizontalAlignment="Left" Height="36" Margin="30,407,0,0" Grid.Row="2" VerticalAlignment="Top" Width="196" FontSize="16"/>
         <Button x:Name="ConnectBtn" Content="Connect" HorizontalAlignment="Left" Height="43" Margin="248,403,0,0" Grid.Row="2" VerticalAlignment="Top" Width="124" FontSize="18" Click="ConnectBtn_Click"/>
-        <Button Content="Simula sensore" HorizontalAlignment="Left" Height="26" Margin="896,394,0,0" Grid.Row="2" VerticalAlignment="Top" Width="128" Click="Btn_Simula_sensore_Click"/>
+        <Button x:Name="btn_Simula_sensore" Content="Simula sensore" HorizontalAlignment="Left" Height="26" Margin="896,394,0,0" Grid.Row="2" VerticalAlignment="Top" Width="128" Click="Btn_Simula_sensore_Click" Visibility="Hidden"/>
         <Border BorderThickness="1" Height="100" Margin="773,292,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  Width="350" Grid.Row="2">
             <Label Content="GIRO CORRENTE" HorizontalAlignment="Left" Width="214" Margin="89,-1,0,63" Foreground="White" FontSize="24"/>
         </Border>

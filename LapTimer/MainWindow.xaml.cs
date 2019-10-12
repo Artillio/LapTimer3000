@@ -46,8 +46,9 @@ namespace LapTimer
             Init();
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
-            
-            btn_Start.IsHitTestVisible = true; // da rimuovere in release
+
+            //btn_Start.IsHitTestVisible = true; // da rimuovere in release
+            //btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
         }
 
         private void Init()
@@ -169,6 +170,11 @@ namespace LapTimer
             char indata = (char)serialPort.ReadChar();
             if (indata == '0')
                 found = true;
+        }
+
+        private void Btn_Simula_sensore_Click(object sender, RoutedEventArgs e)
+        {
+            found = true;
         }
 
         /*---------------------------- FUNZIONI GARA E TIMER --------------------------------------------*/
@@ -378,12 +384,6 @@ namespace LapTimer
             btn_Reset.IsHitTestVisible = false;
             ResetButtons();
             InitTimesAndLabels();
-        }
-
-        // da rimuovere in release
-        private void Btn_Simula_sensore_Click(object sender, RoutedEventArgs e)
-        {
-            found = true;
         }
 
         /*---------------------------- FUNZIONI GESTIONE APPLICAZIONE --------------------------------------------*/
