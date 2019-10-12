@@ -131,6 +131,12 @@ namespace LapTimer
             }
         }
 
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = "";
+        }
+
         /*---------------------------- FUNZIONI PER ARDUINO --------------------------------------------*/
 
         // cerco le porte seriali utilizzate e le elenco nel ComboBox
@@ -372,12 +378,6 @@ namespace LapTimer
             btn_Reset.IsHitTestVisible = false;
             ResetButtons();
             InitTimesAndLabels();
-        }
-
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            tb.Text = "";
         }
 
         // da rimuovere in release
