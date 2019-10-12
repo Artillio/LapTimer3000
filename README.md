@@ -11,7 +11,7 @@ ISTRUZIONI PER L'USO
  - Premere Start
 
 COSE DA SISTEMARE
- - TextBox Placeholder Text
+ - Colonne datagrid
  
 COSE DA AGGIUNGERE
  - Gestione del Rank in modo che se uno occupa le prime 10 posizioni compaia solo una volta col miglior tempo (parte sinistra del programma)

@@ -94,6 +94,13 @@ namespace LapTimer
             databaseManager.Add_Player_In_Queue(ID_User, txt_Number_Race.Text, (bool)radioButton_Paid.IsChecked);
 
             Fill_DataGrid_Queue();
+
+            txt_Name.Text = "Nome";
+            txt_Surname.Text = "Cognome";
+            txt_Number_Race.Text = "Numero corse";
+            txt_Age.Text = "Età";
+            txt_Contact.Text = "Contatto";
+            radioButton_Paid.IsChecked = false;
         }
 
         private void Btn_Delete_Player_Queue_Click(object sender, RoutedEventArgs e)
@@ -365,6 +372,12 @@ namespace LapTimer
             btn_Reset.IsHitTestVisible = false;
             ResetButtons();
             InitTimesAndLabels();
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            tb.Text = "";
         }
 
         // da rimuovere in release
