@@ -12,8 +12,12 @@ ISTRUZIONI PER L'USO
  - Premere Start
 
 COSE DA SISTEMARE
- - Colonne datagrid
+ - suono finale 
+ - ricerca giocatori da inserire
+ - ingrandire carattere colonna classifica
+ - inserire un giocatore durante gara avviata provoca la non cancellazione del giocatore in gara
+ - se non si seleziona nessun giocatore rimane in memoria l’ultimo scelto (quando si preme start)
+ - non registrare giri inferiori a 4s
  
 COSE DA AGGIUNGERE
- - Gestione del Rank in modo che se uno occupa le prime 10 posizioni compaia solo una volta col miglior tempo (parte sinistra del programma)
  - Animazione di fine gara
