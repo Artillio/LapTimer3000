@@ -314,6 +314,7 @@ namespace LapTimer
             }
             else
             {
+                beep2.Play();
                 actual_race_time = 0;  // se era per caso diventato negativo
                 StopRace();
                 if (best_time > 0)
@@ -321,7 +322,6 @@ namespace LapTimer
                     databaseManager.Save_Best_Time_Lap(current_Player.ID, best_label.Content.ToString());
                     Fill_DataGrid_Ranking();
                 }
-                // inserire qui l'animazione di fine gara
                 databaseManager.Delete_Player_Queue(current_Player, false);
                 current_Player = null;
                 Fill_DataGrid_Queue();

@@ -12,9 +12,9 @@ ISTRUZIONI PER L'USO
  - Premere Start
 
 COSE DA SISTEMARE
- - suono finale/Animazione di fine gara
  - ricerca giocatori da inserire
  - riga header datagrid grossetto
+ - Animazione di fine gara
  
 COSE DA AGGIUNGERE (prossimo anno)
  - Sensore NFC
