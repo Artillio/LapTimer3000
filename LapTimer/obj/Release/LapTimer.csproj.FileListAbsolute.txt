@@ -42,3 +42,47 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.appli
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.csproj.CopyComplete
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.exe
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Release\LapTimer.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\Sounds\race_countdown.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\Sounds\beep1.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\Sounds\beep2.wav
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\LapTimer3001.db
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\LapTimer.exe.config
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\LapTimer.exe.manifest
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\LapTimer.application
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\LapTimer.exe
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\LapTimer.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\MaterialDesignColors.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\MaterialDesignThemes.Wpf.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\Microsoft.Data.Sqlite.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\SQLitePCLRaw.core.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Buffers.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Data.SQLite.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Memory.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Numerics.Vectors.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\MaterialDesignColors.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\MaterialDesignThemes.Wpf.pdb
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\MaterialDesignThemes.Wpf.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\Microsoft.Data.Sqlite.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Buffers.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Data.SQLite.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Data.SQLite.dll.config
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Memory.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Numerics.Vectors.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.csprojAssemblyReference.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\MainWindow.g.cs
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\App.g.cs
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer_Content.g.cs
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer_MarkupCompile.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer_MarkupCompile.lref
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\MainWindow.baml
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.g.resources
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.Properties.Resources.resources
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.csproj.GenerateResource.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.csproj.CoreCompileInputs.cache
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.exe.manifest
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.application
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.csproj.CopyComplete
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.exe
+C:\Users\Lorenzo\Desktop\Macchinine sagra\LapTimer3000\LapTimer\obj\Release\LapTimer.pdb

@@ -14,16 +14,16 @@
       </applicationRequestMinimum>
       <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
         <!--
-          Opzioni manifesto Controllo dell'account utente
-          Se si vuole modificare il livello di Controllo dell'account utente di Windows, sostituire il
-          nodo requestedExecutionLevel con uno dei seguenti.
+          UAC Manifest Options
+          If you want to change the Windows User Account Control level replace the 
+          requestedExecutionLevel node with one of the following.
 
         <requestedExecutionLevel  level="asInvoker" uiAccess="false" />
         <requestedExecutionLevel  level="requireAdministrator" uiAccess="false" />
         <requestedExecutionLevel  level="highestAvailable" uiAccess="false" />
 
-         Se si vuole usare Virtualizzazione file system e registro di sistema per la 
-         compatibilità con le versioni precedenti, eliminare il nodo requestedExecutionLevel.
+         If you want to utilize File and Registry Virtualization for backward 
+         compatibility then delete the requestedExecutionLevel node.
     -->
         <requestedExecutionLevel level="asInvoker" uiAccess="false" />
       </requestedPrivileges>
@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="144352">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="LapTimer.exe" size="587232">
       <assemblyIdentity name="LapTimer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>GL4FPsQvwqDdKyg34e7ZkufwizxVCksNyVVMYI7HhBg=</dsig:DigestValue>
+        <dsig:DigestValue>jWFU0he8ZFvGYLggqHpWkg6du3gVhr7+5TRx4V3ZQQE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -176,7 +176,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>pW1LnU1KOWpid1nYA0tiKkTH2iubn8A1Qoej7b5AuvI=</dsig:DigestValue>
+      <dsig:DigestValue>NNG4PQf8JCbZm9GcEgdAfEODgrkBwLbUO+8TdA1LBSA=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Sounds\beep1.wav" size="98888">
