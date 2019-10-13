@@ -30,7 +30,14 @@
         <Label x:Name="lbl_Time_Race" Content="00:00:00&#xA;" HorizontalAlignment="Center" Margin="816,98,810,0" VerticalAlignment="Top" RenderTransformOrigin="1.789,0.115" FontSize="75" Height="98" Width="286" Grid.Row="2" Foreground="#FFFDFDFD"/>
         <Label x:Name="best_label" Content="00:00:00" HorizontalAlignment="Center" Margin="590,316,1133,0" VerticalAlignment="Top" Width="189" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
         <Label x:Name="last_label" Content="00:00:00" HorizontalAlignment="Center" Margin="1128,316,596,0" VerticalAlignment="Top" Width="188" Height="76" FontSize="48" Grid.Row="2" Foreground="White"/>
-        <DataGrid x:Name="dataGrid_Ranking" IsReadOnly="True" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black" IsHitTestVisible="False"/>
+        <DataGrid x:Name="dataGrid_Ranking" IsReadOnly="True" Height="880" VerticalAlignment="Top" Uid="dataGrid_Ranking" Margin="0,0,1557,0" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black" IsHitTestVisible="False" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Posizione" Binding="{Binding Position}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Time" Binding="{Binding Time}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="btn_Start" HorizontalAlignment="Left" Margin="828,112,0,0" VerticalAlignment="Top" Width="248" Height="128" Click="Btn_Start_Click" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False">
             <Button.Background>
                 <ImageBrush ImageSource="Images/star_image.jpg" Opacity="0.9" Stretch="UniformToFill"/>

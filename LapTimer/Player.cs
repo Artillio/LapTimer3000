@@ -8,6 +8,7 @@ namespace LapTimer
 {
     class Player
     {
+        public int Position { get; set; }
         public int ID { get; set; }
         public String Name { get; set; }
         public String Surname { get; set; }

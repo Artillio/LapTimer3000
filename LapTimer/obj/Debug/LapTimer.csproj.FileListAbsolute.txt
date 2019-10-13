@@ -35,7 +35,6 @@ C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\MainWindow.baml
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.g.resources
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.Properties.Resources.resources
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.GenerateResource.cache
-C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CoreCompileInputs.cache
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.exe.manifest
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.application
 C:\Users\artil\Documents\GitHub\LapTimer3000\LapTimer\obj\Debug\LapTimer.csproj.CopyComplete
