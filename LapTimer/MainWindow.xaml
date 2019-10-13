@@ -50,7 +50,15 @@
         <CheckBox x:Name="radioButton_Paid" Content="Pagato" HorizontalAlignment="Left" Margin="1808,469,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="60" Foreground="White" />
         <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="22" Margin="1776,433,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
         <TextBox x:Name="txt_Age" HorizontalAlignment="Left" Height="24" Margin="1525,467,0,0" TextWrapping="Wrap" Text="Età" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
-        <DataGrid x:Name="dataGrid_Player_Queue" IsReadOnly="True" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black" MouseLeftButtonUp="DataGrid_Player_Queue_MouseLeftButtonUp"/>
+        <DataGrid x:Name="dataGrid_Player_Queue" IsReadOnly="True" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black" MouseLeftButtonUp="DataGrid_Player_Queue_MouseLeftButtonUp">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Surname" Binding="{Binding Surname}" />
+                <DataGridTextColumn Header="Paid" Binding="{Binding Paid}" />
+                <DataGridTextColumn Header="NumberRace" Binding="{Binding Number_Race}" />
+            </DataGrid.Columns>
+        </DataGrid>
         <TextBox x:Name="txt_Contact" HorizontalAlignment="Left" Height="24" Margin="1651,467,0,0" TextWrapping="Wrap" Text="Contatti" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
         <Button x:Name="btn_Pause" HorizontalAlignment="Left" Margin="1394,50,0,0" VerticalAlignment="Top" Width="133" Height="80" Foreground="White" BorderBrush="{x:Null}" IsHitTestVisible="False" Click="Btn_Pause_Click">
             <Button.Background>
