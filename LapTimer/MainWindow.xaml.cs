@@ -47,8 +47,8 @@ namespace LapTimer
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
-            btn_Start.IsHitTestVisible = true; // da rimuovere in release
-            btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
+            //btn_Start.IsHitTestVisible = true; // da rimuovere in release
+            //btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
         }
 
         private void Init()

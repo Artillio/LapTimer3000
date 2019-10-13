@@ -43,12 +43,12 @@
                 <ImageBrush ImageSource="Images/star_image.jpg" Opacity="0.9" Stretch="UniformToFill"/>
             </Button.Background>
         </Button>
-        <Button x:Name="btn_AddPlayer" Content="Aggiungi Giocatore" HorizontalAlignment="Left" Margin="1591,390,0,0" VerticalAlignment="Top" Width="134" Click="Btn_AddPlayer_Click" Grid.Row="2" Height="27"/>
-        <Button x:Name="btn_Delete_Player_Queue" Content="Elimina Giocatore" HorizontalAlignment="Left" Margin="1742,391,0,0" VerticalAlignment="Top" Width="136" Click="Btn_Delete_Player_Queue_Click" Grid.Row="2" Height="27"/>
-        <TextBox x:Name="txt_Name" HorizontalAlignment="Left" Height="22" Margin="1614,431,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, FallbackValue=Nome}" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
-        <TextBox x:Name="txt_Surname" HorizontalAlignment="Left" Height="22" Margin="1739,431,0,0" TextWrapping="Wrap" Text="Cognome" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
-        <CheckBox x:Name="radioButton_Paid" Content="Pagato" HorizontalAlignment="Left" Margin="1773,463,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="60" Foreground="White" />
-        <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="22" Margin="1615,459,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
+        <Button x:Name="btn_AddPlayer" Content="Aggiungi Giocatore" HorizontalAlignment="Left" Margin="1591,395,0,0" VerticalAlignment="Top" Width="134" Click="Btn_AddPlayer_Click" Grid.Row="2" Height="27"/>
+        <Button x:Name="btn_Delete_Player_Queue" Content="Elimina Giocatore" HorizontalAlignment="Left" Margin="1742,396,0,0" VerticalAlignment="Top" Width="136" Click="Btn_Delete_Player_Queue_Click" Grid.Row="2" Height="27"/>
+        <TextBox x:Name="txt_Name" HorizontalAlignment="Left" Height="22" Margin="1614,436,0,0" TextWrapping="Wrap" Text="{Binding Path=Name, FallbackValue=Nome}" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
+        <TextBox x:Name="txt_Surname" HorizontalAlignment="Left" Height="22" Margin="1739,436,0,0" TextWrapping="Wrap" Text="Cognome" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
+        <CheckBox x:Name="radioButton_Paid" Content="Pagato" HorizontalAlignment="Left" Margin="1773,468,0,0" VerticalAlignment="Top" Grid.Row="2" Height="16" Width="60" Foreground="White" />
+        <TextBox x:Name="txt_Number_Race" HorizontalAlignment="Left" Height="22" Margin="1615,464,0,0" TextWrapping="Wrap" Text="Numero Corse" VerticalAlignment="Top" Width="120" Grid.Row="2" GotFocus="TextBox_GotFocus"/>
         <DataGrid x:Name="dataGrid_Player_Queue" IsReadOnly="True" Height="880" Margin="1557,0,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.02,0.66" Grid.RowSpan="3" Background="{x:Null}" Foreground="Black" MouseLeftButtonUp="DataGrid_Player_Queue_MouseLeftButtonUp" AutoGenerateColumns="False" FontSize="16" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserSortColumns="False" CanUserResizeRows="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Nome" Binding="{Binding Name}" CanUserResize="False" FontSize="16" />
@@ -126,6 +126,6 @@
             </Button.Background>
         </Button>
         <Label Content="TEMPO RIMANENTE" HorizontalAlignment="Left" Width="226" Margin="846,76,0,393" Foreground="White" FontSize="24" Grid.Row="2"/>
-        <GroupBox Header="Modifica coda giocatori" HorizontalAlignment="Left" Height="135" Margin="1576,363,0,0" Grid.Row="2" VerticalAlignment="Top" Width="316" Foreground="White" FontSize="14"/>
+        <GroupBox Header="Modifica coda giocatori" HorizontalAlignment="Left" Height="135" Margin="1576,368,0,0" Grid.Row="2" VerticalAlignment="Top" Width="316" Foreground="White" FontSize="14"/>
     </Grid>
 </Window>
