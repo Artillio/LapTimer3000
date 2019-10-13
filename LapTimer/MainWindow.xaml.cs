@@ -47,8 +47,8 @@ namespace LapTimer
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
-            //btn_Start.IsHitTestVisible = true; // da rimuovere in release
-            //btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
+            btn_Start.IsHitTestVisible = true; // da rimuovere in release
+            btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
         }
 
         private void Init()
@@ -59,6 +59,8 @@ namespace LapTimer
             found = false;
             beep1 = new SoundPlayer(".\\Sounds\\beep1.wav");
             beep2 = new SoundPlayer(".\\Sounds\\beep2.wav");
+            current_Player = null;
+            serialPort = null;
             databaseManager = new DatabaseManager();
             InitTimers();
             SearchCOM();
@@ -106,7 +108,8 @@ namespace LapTimer
         {
             if (current_Player != null)
             {
-                databaseManager.Delete_Player_Queue(dataGrid_Player_Queue, current_Player, true);
+                databaseManager.Delete_Player_Queue(current_Player, true);
+                current_Player = null;
                 Fill_DataGrid_Queue();
             }
         }
@@ -319,7 +322,8 @@ namespace LapTimer
                     Fill_DataGrid_Ranking();
                 }
                 // inserire qui l'animazione di fine gara
-                databaseManager.Delete_Player_Queue(dataGrid_Player_Queue, current_Player, false);
+                databaseManager.Delete_Player_Queue(current_Player, false);
+                current_Player = null;
                 Fill_DataGrid_Queue();
                 ResetButtons();
             }

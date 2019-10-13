@@ -44,16 +44,12 @@ namespace LapTimer
             connection.Close();
         }
 
-        public void Delete_Player_Queue(DataGrid dataGrid_Player_Queue, Player current_Player, bool btn)
+        public void Delete_Player_Queue(Player current_Player, bool btn)
         {
             try
             {
-                if (dataGrid_Player_Queue.SelectedItems.Count == 1)
+                if (current_Player != null)
                 {
-                    DataGridRow dgr = dataGrid_Player_Queue.ItemContainerGenerator.ContainerFromItem(dataGrid_Player_Queue.SelectedItem) as DataGridRow;
-                    current_Player = new Player();
-                    current_Player = (Player)dgr.Item;
-
                     if (connection.State == System.Data.ConnectionState.Closed)
                         connection.Open();
 
@@ -126,10 +122,22 @@ namespace LapTimer
             if (connection.State == System.Data.ConnectionState.Closed)
                 connection.Open();
 
-            using (SQLiteCommand command = new SQLiteCommand("insert into Queue(ID_User, Number_Race, Paid) values (@ID_User, @Number_Race, @Paid)", connection))
+            int num_race;
+            try
+            {
+                num_race = Int32.Parse(Number_Race);
+                if (num_race < 0)
+                    num_race = 1;
+            }
+            catch (FormatException e)
+            {
+                num_race = 1;
+            }
+
+            using (SQLiteCommand command = new SQLiteCommand("insert into Queue(ID_User, Number_Race, Paid) values (@ID_User, @num_race, @Paid)", connection))
             {
                 command.Parameters.AddWithValue("@ID_User", ID_User);
-                command.Parameters.AddWithValue("@Number_Race", Number_Race);
+                command.Parameters.AddWithValue("@num_race", num_race);
                 if (Paid == true)
                     command.Parameters.AddWithValue("@Paid", 1);
                 else

@@ -14,8 +14,8 @@ ISTRUZIONI PER L'USO
 COSE DA SISTEMARE
  - suono finale/Animazione di fine gara
  - ricerca giocatori da inserire
- - inserire un giocatore durante gara avviata provoca la non cancellazione del giocatore in gara
- - se non si seleziona nessun giocatore rimane in memoria l’ultimo scelto (quando si preme start)
  - riga header datagrid grossetto
  
-COSE DA AGGIUNGERE
+COSE DA AGGIUNGERE (prossimo anno)
+ - Sensore NFC
+ - Minipremi e premio finale (< 50€)
