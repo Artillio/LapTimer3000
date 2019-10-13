@@ -106,7 +106,7 @@ namespace LapTimer
             }
         }
 
-        public void Add_New_Player(string name, string surname, string Contact, string Age)
+        public void Add_New_Player(string name, string surname, string Contact = "", string Age = "")
         {
             if (connection.State == System.Data.ConnectionState.Closed)
                 connection.Open();

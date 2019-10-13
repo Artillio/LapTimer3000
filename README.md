@@ -12,12 +12,10 @@ ISTRUZIONI PER L'USO
  - Premere Start
 
 COSE DA SISTEMARE
- - suono finale 
+ - suono finale/Animazione di fine gara
  - ricerca giocatori da inserire
- - ingrandire carattere colonna classifica
  - inserire un giocatore durante gara avviata provoca la non cancellazione del giocatore in gara
  - se non si seleziona nessun giocatore rimane in memoria l’ultimo scelto (quando si preme start)
- - non registrare giri inferiori a 4s
+ - riga header datagrid grossetto
  
 COSE DA AGGIUNGERE
- - Animazione di fine gara

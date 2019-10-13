@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="LapTimer.exe.manifest" size="11316">
+    <dependentAssembly dependencyType="install" codebase="LapTimer.exe.manifest" size="11242">
       <assemblyIdentity name="LapTimer.exe" version="1.0.0.2" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>uE+/q6QHD2kcyL7NDN4lJOJQz5B9pE1DdNkNLKDNmE8=</dsig:DigestValue>
+        <dsig:DigestValue>ggaT6xaZhyZO6iNIUtb4jRvz0nC7GKNHXLyW2S36B3I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

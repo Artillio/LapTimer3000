@@ -47,8 +47,8 @@ namespace LapTimer
             Fill_DataGrid_Ranking();
             Fill_DataGrid_Queue();
 
-            //btn_Start.IsHitTestVisible = true; // da rimuovere in release
-            //btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
+            btn_Start.IsHitTestVisible = true; // da rimuovere in release
+            btn_Simula_sensore.Visibility = Visibility.Visible;  // da rimuovere in release
         }
 
         private void Init()
@@ -88,7 +88,7 @@ namespace LapTimer
 
             if (ID_User == 0)
             {
-                databaseManager.Add_New_Player(txt_Name.Text, txt_Surname.Text, txt_Contact.Text, txt_Age.Text);
+                databaseManager.Add_New_Player(txt_Name.Text, txt_Surname.Text);
                 ID_User = databaseManager.Check_Existing_Player(txt_Name.Text, txt_Surname.Text);
             }
 
@@ -99,8 +99,6 @@ namespace LapTimer
             txt_Name.Text = "Nome";
             txt_Surname.Text = "Cognome";
             txt_Number_Race.Text = "Numero corse";
-            txt_Age.Text = "Età";
-            txt_Contact.Text = "Contatto";
             radioButton_Paid.IsChecked = false;
         }
 
@@ -342,7 +340,7 @@ namespace LapTimer
             WriteTime(lap_label, lap_time);
 
             long minuto = 1000 * 60;
-            if ((found == true || lap_time > 5 * minuto) && lap_time > 0)
+            if ((found == true || lap_time > 5 * minuto) && lap_time > 2000)
             {
                 if (best_time == 0 || lap_time < best_time)
                 {
